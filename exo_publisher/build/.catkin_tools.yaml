@@ -1,0 +1,6 @@
+devel_space: /home/ivan/exo_publisher/devel
+install: false
+install_space: /home/ivan/exo_publisher/install
+profile: default
+source_space: /home/ivan/exo_publisher/src
+workspace: /home/ivan/exo_publisher

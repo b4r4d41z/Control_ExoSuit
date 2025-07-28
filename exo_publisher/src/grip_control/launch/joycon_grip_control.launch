@@ -1,0 +1,9 @@
+<launch>
+  <node
+    pkg="grip_control"
+    type="joycon_grip_control.py"
+    name="joycon_grip_control"
+    output="screen"
+    required="true"
+  />
+</launch>
