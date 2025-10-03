@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import rospy
+from dynamic_biped.msg import robot_hand_eff
+from joyconrobotics import JoyconRobotics
+
+# Presets for open and closed hand positions
+# Each list has 6 values (degrees for finger joints)
+open_left_hand  = [0,100,0,0,0,0]
+close_left_hand = [69,99,42,54,61,60]
+
+open_right_hand  = [0,100,0,0,0,0]
+close_right_hand = [69,99,42,44,61,60]
+
+class JoyconHandPublisher:
+    def __init__(self):
+        # Initialize ROS node
+        rospy.init_node('joycon_hand_publisher', anonymous=True)
+
+        # Create publisher for the topic robot_hand_eff
+        self.pub = rospy.Publisher('robot_hand_eff', robot_hand_eff, queue_size=10)
+
+        # Set publishing frequency (50 Hz)
+        self.rate = rospy.Rate(50)
+
+        # Initialize Joy-Con controllers
+        self.joycon_right = JoyconRobotics("right")
+        self.joycon_left  = JoyconRobotics("left")
+
+        rospy.loginfo("Joycon hand publisher started (without SDK)")
+
+        # Start the main publishing loop
+        self.loop()
+
+    def loop(self):
+        while not rospy.is_shutdown():
+            # Read control data from both Joy-Cons
+            _, gripper_r, _ = self.joycon_right.get_control()
+            _, gripper_l, _ = self.joycon_left.get_control()
+
+            # Logic:
+            # If either left or right gripper button is pressed -> close both hands
+            # Otherwise -> open both hands
+            if gripper_l == 1 or gripper_r == 1:
+                data = close_left_hand + close_right_hand
+            else:
+                data = open_left_hand + open_right_hand
+
+            # Create message of type robot_hand_eff
+            msg = robot_hand_eff()
+            msg.header.stamp = rospy.Time.now()
+            msg.data = data
+
+            # Publish message to the topic
+            self.pub.publish(msg)
+
+            # Sleep to maintain loop rate
+            self.rate.sleep()
+
+        # Disconnect Joy-Cons when shutting down
+        self.joycon_right.disconnect()
+        self.joycon_left.disconnect()
+
+if __name__ == "__main__":
+    try:
+        JoyconHandPublisher()
+    except rospy.ROSInterruptException:
+        pass

@@ -1,1 +1,1 @@
-/home/ivan/exo_publisher/devel/.private/catkin_tools_prebuild/setup.bash
+/home/ExoSuit/exo_publisher/devel/.private/catkin_tools_prebuild/setup.bash

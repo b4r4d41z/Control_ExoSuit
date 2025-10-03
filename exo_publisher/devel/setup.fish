@@ -1,1 +1,1 @@
-/home/ivan/exo_publisher/devel/.private/catkin_tools_prebuild/setup.fish
+/home/ExoSuit/exo_publisher/devel/.private/catkin_tools_prebuild/setup.fish

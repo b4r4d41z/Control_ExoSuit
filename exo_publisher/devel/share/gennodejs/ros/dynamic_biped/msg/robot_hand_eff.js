@@ -1,0 +1,1 @@
+/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped/msg/robot_hand_eff.js

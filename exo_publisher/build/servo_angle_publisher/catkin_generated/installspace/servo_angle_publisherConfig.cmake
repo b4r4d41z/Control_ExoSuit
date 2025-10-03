@@ -67,14 +67,14 @@ set(servo_angle_publisher_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(servo_angle_publisher_SOURCE_PREFIX /home/ivan/exo_publisher/src/servo_angle_publisher)
-  set(servo_angle_publisher_DEVEL_PREFIX /home/ivan/exo_publisher/devel/.private/servo_angle_publisher)
+  set(servo_angle_publisher_SOURCE_PREFIX /home/ExoSuit/exo_publisher/src/servo_angle_publisher)
+  set(servo_angle_publisher_DEVEL_PREFIX /home/ExoSuit/exo_publisher/devel/.private/servo_angle_publisher)
   set(servo_angle_publisher_INSTALL_PREFIX "")
   set(servo_angle_publisher_PREFIX ${servo_angle_publisher_DEVEL_PREFIX})
 else()
   set(servo_angle_publisher_SOURCE_PREFIX "")
   set(servo_angle_publisher_DEVEL_PREFIX "")
-  set(servo_angle_publisher_INSTALL_PREFIX /home/ivan/exo_publisher/install)
+  set(servo_angle_publisher_INSTALL_PREFIX /home/ExoSuit/exo_publisher/install)
   set(servo_angle_publisher_PREFIX ${servo_angle_publisher_INSTALL_PREFIX})
 endif()
 
@@ -156,7 +156,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/ivan/exo_publisher/install/lib;/home/ivan/exo_publisher/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/ExoSuit/exo_publisher/install/lib;/home/ExoSuit/exo_publisher/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

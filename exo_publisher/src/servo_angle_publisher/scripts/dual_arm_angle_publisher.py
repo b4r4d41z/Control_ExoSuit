@@ -9,8 +9,8 @@ from sensor_msgs.msg import JointState
 
 PROTOCOL_VERSION = 0
 TIMEOUT_MS = 1000
-LEFT_USB_PORT = "/dev/ttyACM0"
-RIGHT_USB_PORT = "/dev/ttyACM1"
+LEFT_USB_PORT = "/dev/ttyACM1"
+RIGHT_USB_PORT = "/dev/ttyACM0"
 MODEL_RESOLUTION = 4096
 NUM_READ_RETRY = 20
 NUM_WRITE_RETRY = 20

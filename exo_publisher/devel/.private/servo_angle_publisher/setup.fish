@@ -18,7 +18,7 @@ if not type -q bass
 end
 
 if test -z $_CATKIN_SETUP_DIR
-    set _CATKIN_SETUP_DIR /home/ivan/exo_publisher/devel/.private/servo_angle_publisher
+    set _CATKIN_SETUP_DIR /home/ExoSuit/exo_publisher/devel/.private/servo_angle_publisher
 end
 
 set _SETUP_UTIL "$_CATKIN_SETUP_DIR/_setup_util.py"

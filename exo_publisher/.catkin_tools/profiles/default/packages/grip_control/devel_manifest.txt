@@ -1,0 +1,5 @@
+grip_control
+/home/ExoSuit/exo_publisher/devel/.private/grip_control/share/grip_control/cmake/grip_controlConfig.cmake /home/ExoSuit/exo_publisher/devel/share/grip_control/cmake/grip_controlConfig.cmake
+/home/ExoSuit/exo_publisher/devel/.private/grip_control/share/grip_control/cmake/grip_controlConfig-version.cmake /home/ExoSuit/exo_publisher/devel/share/grip_control/cmake/grip_controlConfig-version.cmake
+/home/ExoSuit/exo_publisher/devel/.private/grip_control/lib/pkgconfig/grip_control.pc /home/ExoSuit/exo_publisher/devel/lib/pkgconfig/grip_control.pc
+/home/ExoSuit/exo_publisher/devel/.private/grip_control/lib/grip_control/joycon_hand_publisher.py /home/ExoSuit/exo_publisher/devel/lib/grip_control/joycon_hand_publisher.py

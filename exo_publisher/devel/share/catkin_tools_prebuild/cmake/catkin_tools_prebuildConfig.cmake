@@ -1,1 +1,1 @@
-/home/ivan/exo_publisher/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+/home/ExoSuit/exo_publisher/devel/.private/catkin_tools_prebuild/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake

@@ -1,0 +1,14 @@
+[31m[1mCMake Error[0m at /home/ExoSuit/exo_publisher/build/dynamic_biped/cmake/dynamic_biped-genmsg.cmake:3 (message):
+  Could not find messages which
+  '/home/ExoSuit/exo_publisher/src/dynamic_biped/msg/handRotationEular.msg'
+  depends on.  Did you forget to specify generate_messages(DEPENDENCIES ...)?
+
+  Cannot locate message [Vector3]: unknown package [geometry_msgs] on search
+  path [{{'dynamic_biped':
+  ['/home/ExoSuit/exo_publisher/src/dynamic_biped/msg'], 'std_msgs':
+  ['/opt/ros/noetic/share/std_msgs/cmake/../msg']}}]
+[36mCall Stack (most recent call first):[0m
+  /opt/ros/noetic/share/genmsg/cmake/genmsg-extras.cmake:307 (include)
+  CMakeLists.txt:50 (generate_messages)
+
+

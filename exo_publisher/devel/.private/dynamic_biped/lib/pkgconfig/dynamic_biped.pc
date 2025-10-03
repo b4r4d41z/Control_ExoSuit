@@ -1,0 +1,8 @@
+prefix=/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped
+
+Name: dynamic_biped
+Description: Description of dynamic_biped
+Version: 0.0.1
+Cflags: -I/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs

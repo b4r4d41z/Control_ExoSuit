@@ -4,15 +4,13 @@ project(grip_control)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
-  sensor_msgs
-  dynamic_biped
   message_generation
+  dynamic_biped   # твой пакет с robot_hand_eff.msg
 )
 
-catkin_package(
-  CATKIN_DEPENDS rospy std_msgs sensor_msgs dynamic_biped
-)
+catkin_package()
 
-include_directories(
-  ${catkin_INCLUDE_DIRS}
+catkin_install_python(PROGRAMS
+  scripts/joycon_hand_publisher.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/ivan/exo_publisher/devel/.private/servo_angle_publisher:$CMAKE_PREFIX_PATH"
-export PWD='/home/ivan/exo_publisher/build/servo_angle_publisher'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/ivan/exo_publisher/devel/.private/servo_angle_publisher/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/ivan/exo_publisher/src/servo_angle_publisher:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/ExoSuit/exo_publisher/devel/.private/servo_angle_publisher:$CMAKE_PREFIX_PATH"
+export PWD='/home/ExoSuit/exo_publisher/build/servo_angle_publisher'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/ExoSuit/exo_publisher/devel/.private/servo_angle_publisher/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/ExoSuit/exo_publisher/src/servo_angle_publisher:$ROS_PACKAGE_PATH"

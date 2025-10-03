@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>dynamic_biped</name>
+  <version>0.0.1</version>
+  <description>Messages and services for Kuavo biped robot control</description>
+
+  <!-- Author/maintainer info -->
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <author email="you@example.com">Your Name</author>
+  <license>HIT</license>
+
+  <!-- Build tools -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies for message/service generation -->
+  <build_depend>message_generation</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <!-- If any of your .msg use geometry_msgs, add this -->
+  <!-- <build_depend>geometry_msgs</build_depend> -->
+  <!-- <exec_depend>geometry_msgs</exec_depend> -->
+</package>

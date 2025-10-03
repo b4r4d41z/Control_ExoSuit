@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/setup.sh

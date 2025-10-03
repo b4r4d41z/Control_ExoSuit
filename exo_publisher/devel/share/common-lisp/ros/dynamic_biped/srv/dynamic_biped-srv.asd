@@ -1,0 +1,1 @@
+/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/share/common-lisp/ros/dynamic_biped/srv/dynamic_biped-srv.asd

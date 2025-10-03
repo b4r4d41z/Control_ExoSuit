@@ -1,4 +1,4 @@
-prefix=/home/ivan/exo_publisher/devel/.private/servo_angle_publisher
+prefix=/home/ExoSuit/exo_publisher/devel/.private/servo_angle_publisher
 
 Name: servo_angle_publisher
 Description: Description of servo_angle_publisher

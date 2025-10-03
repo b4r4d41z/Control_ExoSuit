@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="grip_control" type="joycon_hand_publisher.py" name="joycon_hand_publisher" output="screen"/>
+</launch>

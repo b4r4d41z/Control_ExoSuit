@@ -1,0 +1,8 @@
+prefix=/home/ExoSuit/exo_publisher/install
+
+Name: grip_control
+Description: Description of grip_control
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
