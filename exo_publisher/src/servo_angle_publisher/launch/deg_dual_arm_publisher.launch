@@ -1,0 +1,6 @@
+<launch>
+  <node name="deg_dual_arm_publisher"
+        pkg="servo_angle_publisher"
+        type="deg_dual_arm_angle_publisher.py"
+        output="screen" />
+</launch>

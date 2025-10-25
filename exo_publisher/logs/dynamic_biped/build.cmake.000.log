@@ -33,20 +33,8 @@ Not searching for unused variables given on the command line.
 [36m--[0m catkin 0.8.12
 [36m--[0m BUILD_SHARED_LIBS is on
 [36m--[0m Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
-[31m[1mCMake Error[0m at /home/ExoSuit/exo_publisher/build/dynamic_biped/cmake/dynamic_biped-genmsg.cmake:3 (message):
-  Could not find messages which
-  '/home/ExoSuit/exo_publisher/src/dynamic_biped/msg/handRotationEular.msg'
-  depends on.  Did you forget to specify generate_messages(DEPENDENCIES ...)?
-
-  Cannot locate message [Vector3]: unknown package [geometry_msgs] on search
-  path [{{'dynamic_biped':
-  ['/home/ExoSuit/exo_publisher/src/dynamic_biped/msg'], 'std_msgs':
-  ['/opt/ros/noetic/share/std_msgs/cmake/../msg']}}]
-[36mCall Stack (most recent call first):[0m
-  /opt/ros/noetic/share/genmsg/cmake/genmsg-extras.cmake:307 (include)
-  CMakeLists.txt:50 (generate_messages)
-
-
-[36m--[0m Configuring incomplete, errors occurred!
-See also "/home/ExoSuit/exo_publisher/build/dynamic_biped/CMakeFiles/CMakeOutput.log".
-See also "/home/ExoSuit/exo_publisher/build/dynamic_biped/CMakeFiles/CMakeError.log".
+[36m--[0m dynamic_biped: 15 messages, 8 services
+[36m--[0m Installing devel-space wrapper /home/ExoSuit/exo_publisher/src/dynamic_biped/script/arm_move_X.py to /home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/lib/dynamic_biped
+[36m--[0m Configuring done
+[36m--[0m Generating done
+[36m--[0m Build files have been written to: /home/ExoSuit/exo_publisher/build/dynamic_biped

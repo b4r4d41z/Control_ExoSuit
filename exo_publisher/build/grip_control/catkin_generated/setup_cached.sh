@@ -8,6 +8,8 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/ExoSuit/exo_publisher/devel/.private/grip_control:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/ExoSuit/exo_publisher/devel/.private/grip_control/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/ExoSuit/exo_publisher/devel/.private/grip_control/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/ExoSuit/exo_publisher/build/grip_control'
 export ROSLISP_PACKAGE_DIRECTORIES="/home/ExoSuit/exo_publisher/devel/.private/grip_control/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
 export ROS_PACKAGE_PATH="/home/ExoSuit/exo_publisher/src/grip_control:$ROS_PACKAGE_PATH"

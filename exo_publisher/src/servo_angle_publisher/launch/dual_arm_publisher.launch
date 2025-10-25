@@ -1,6 +1,0 @@
-<launch>
-   <node name="dual_arm_publisher" 
-   pkg="servo_angle_publisher" 
-   type="dual_arm_angle_publisher.py" 
-   output="screen"/> 
-</launch>
