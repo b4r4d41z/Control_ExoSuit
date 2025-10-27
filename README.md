@@ -3,6 +3,9 @@ Exosuit for bimanual robot teleoperation
 
 # Updates:
 **Current updates**
+> 27 October 2025
+Data collection script
+
 > 10 October 2025
 Now you can collect data from real robot KUAVO, including 7DOF both hands position and grip control. Check `data_colection_tutorial.md`
 

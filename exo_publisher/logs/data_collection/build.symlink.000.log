@@ -1,0 +1,4 @@
+Symlinking /home/ExoSuit/exo_publisher/devel/share/data_collection/cmake/data_collectionConfig.cmake
+Symlinking /home/ExoSuit/exo_publisher/devel/share/data_collection/cmake/data_collectionConfig-version.cmake
+Symlinking /home/ExoSuit/exo_publisher/devel/lib/pkgconfig/data_collection.pc
+Symlinking /home/ExoSuit/exo_publisher/devel/lib/data_collection/joycon_bag_recorder.py
