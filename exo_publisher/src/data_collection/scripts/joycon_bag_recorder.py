@@ -8,7 +8,10 @@ from joyconrobotics import JoyconRobotics
 def main():
     rospy.init_node("joycon_bag_recorder", anonymous=True)
     jc = JoyconRobotics("right", without_rest_init=True)
-    save_dir = os.path.join(os.path.expanduser("~"), "joycon_bags")
+    
+    # Save bags inside the 'records' directory of this package
+    package_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    save_dir = os.path.join(package_dir, "records")
     os.makedirs(save_dir, exist_ok=True)
 
     recording = False

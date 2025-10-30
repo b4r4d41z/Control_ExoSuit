@@ -3,15 +3,17 @@ Exosuit for bimanual robot teleoperation
 
 # Updates:
 **Current updates**
-> 27 October 2025
-Data collection script
+> v1.3 21 October 2025 
+"Data collection" can be started with joycon
 
-> 10 October 2025
+> v1.2 10 October 2025
 Now you can collect data from real robot KUAVO, including 7DOF both hands position and grip control. Check `data_colection_tutorial.md`
 
-> 13 Jun 2025
+> v1.1 13 Jun 2025
 Now you can read angle data by script in: /ExoSuit/exo_publisher/src/servo_angle_publisher/scripts/dual_arm_angle_publisher.py
 
 **Future tasks:**
+
+> Update exosuit model
 
 > Working with simulations

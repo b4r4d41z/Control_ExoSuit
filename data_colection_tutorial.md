@@ -95,13 +95,24 @@ Radxa IP:
 export ROS_IP=192.168.3.52
 ```
 
->7. Source workspace `/home/ExoSuit/exo_publisher`
+>7. Source each new terminal with workspace `/home/ExoSuit/exo_publisher`
 
 ```bash 
 source devel/setup.bash
 ```
->8. launch 
+>8. Launch servo_angle_publisher
 
 ```bash 
 roslaunch servo_angle_publisher deg_dual_arm_publisher.launch
+```
+>8. Launch grip control
+
+```bash 
+roslaunch grip_control joycon_hand_publisher.launch
+```
+
+>9. Launch data_collection
+
+```bash 
+roslaunch data_collection joycon_bag_recorder.launch
 ```
