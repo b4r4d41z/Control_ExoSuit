@@ -12,16 +12,16 @@
 - Data collection now require only one user due too updated data collection framework
 
 > `v1.3` 21 October 2025 
-"Data collection" can be started with joycon
+- "Data collection" can be started with joycon
 
 > `v1.2` 10 October 2025
-Now you can collect data from real robot KUAVO, including 7DOF both hands position and grip control. Check below
+- Now you can collect data from real robot KUAVO, including 7DOF both hands position and grip control. Check below
 
 > `v1.1` 13 Jun 2025
-Now you can read angle data by script in: /ExoSuit/exo_publisher/src/servo_angle_publisher/scripts/dual_arm_angle_publisher.py
+- Now you can read angle data by script in: /ExoSuit/exo_publisher/src/servo_angle_publisher/scripts/dual_arm_angle_publisher.py
 
 **Future tasks:**
-> Data collection in simulation
+- Data collection in simulation
 
 
 # **Data collection on real robot | KUAVO** #
