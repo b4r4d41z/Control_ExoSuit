@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>grip_state_publisher</name>
+  <version>0.0.1</version>
+  <description>Joy-Con based grip control publisher with start/stop toggle</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>dynamic_biped</depend>
+  <depend>joyconrobotics</depend>
+</package>

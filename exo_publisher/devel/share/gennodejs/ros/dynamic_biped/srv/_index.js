@@ -1,1 +1,0 @@
-/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped/srv/_index.js

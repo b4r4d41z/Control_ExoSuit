@@ -1,5 +1,0 @@
-data_collection
-/home/ExoSuit/exo_publisher/devel/.private/data_collection/share/data_collection/cmake/data_collectionConfig.cmake /home/ExoSuit/exo_publisher/devel/share/data_collection/cmake/data_collectionConfig.cmake
-/home/ExoSuit/exo_publisher/devel/.private/data_collection/share/data_collection/cmake/data_collectionConfig-version.cmake /home/ExoSuit/exo_publisher/devel/share/data_collection/cmake/data_collectionConfig-version.cmake
-/home/ExoSuit/exo_publisher/devel/.private/data_collection/lib/pkgconfig/data_collection.pc /home/ExoSuit/exo_publisher/devel/lib/pkgconfig/data_collection.pc
-/home/ExoSuit/exo_publisher/devel/.private/data_collection/lib/data_collection/joycon_bag_recorder.py /home/ExoSuit/exo_publisher/devel/lib/data_collection/joycon_bag_recorder.py

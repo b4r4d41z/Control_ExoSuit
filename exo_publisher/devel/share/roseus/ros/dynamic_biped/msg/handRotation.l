@@ -1,1 +1,0 @@
-/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/share/roseus/ros/dynamic_biped/msg/handRotation.l

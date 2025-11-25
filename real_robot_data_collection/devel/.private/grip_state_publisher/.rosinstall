@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/setup.sh

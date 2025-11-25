@@ -1,0 +1,1 @@
+/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/share/roseus/ros/dynamic_biped/msg/handRotation.l

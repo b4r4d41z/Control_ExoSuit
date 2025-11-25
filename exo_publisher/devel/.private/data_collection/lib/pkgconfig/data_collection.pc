@@ -1,8 +1,0 @@
-prefix=/home/ExoSuit/exo_publisher/devel/.private/data_collection
-
-Name: data_collection
-Description: Description of data_collection
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

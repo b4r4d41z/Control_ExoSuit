@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="grip_state_publisher" type="grip_state_publisher.py" name="grip_state_publisher" output="screen"/>
+</launch>

@@ -1,1 +1,0 @@
-/home/ExoSuit/exo_publisher/devel/.private/data_collection/lib/pkgconfig/data_collection.pc

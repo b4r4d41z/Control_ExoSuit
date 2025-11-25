@@ -1,0 +1,8 @@
+prefix=/home/ExoSuit/real_robot_data_collection/install
+
+Name: dynamic_biped
+Description: Description of dynamic_biped
+Version: 0.0.1
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime std_msgs

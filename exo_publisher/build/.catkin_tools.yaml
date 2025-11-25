@@ -1,6 +1,0 @@
-devel_space: /home/ExoSuit/exo_publisher/devel
-install: false
-install_space: /home/ExoSuit/exo_publisher/install
-profile: default
-source_space: /home/ExoSuit/exo_publisher/src
-workspace: /home/ExoSuit/exo_publisher

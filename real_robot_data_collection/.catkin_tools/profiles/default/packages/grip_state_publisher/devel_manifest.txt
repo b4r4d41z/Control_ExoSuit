@@ -1,0 +1,5 @@
+grip_state_publisher
+/home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/share/grip_state_publisher/cmake/grip_state_publisherConfig.cmake /home/ExoSuit/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig.cmake
+/home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/share/grip_state_publisher/cmake/grip_state_publisherConfig-version.cmake /home/ExoSuit/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig-version.cmake
+/home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/lib/pkgconfig/grip_state_publisher.pc /home/ExoSuit/real_robot_data_collection/devel/lib/pkgconfig/grip_state_publisher.pc
+/home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/lib/grip_state_publisher/grip_state_publisher.py /home/ExoSuit/real_robot_data_collection/devel/lib/grip_state_publisher/grip_state_publisher.py

@@ -1,1 +1,0 @@
-/home/ExoSuit/exo_publisher/devel/.private/dynamic_biped/lib/python3/dist-packages/dynamic_biped/msg/__init__.py

@@ -1,3 +1,0 @@
-<launch>
-  <node pkg="data_collection" type="joycon_bag_recorder.py" name="joycon_bag_recorder" output="screen"/>
-</launch>
