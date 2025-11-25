@@ -1,0 +1,8 @@
+prefix=/home/ExoSuit/real_robot_data_collection/devel/.private/data_bag_recorder
+
+Name: data_bag_recorder
+Description: Description of data_bag_recorder
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

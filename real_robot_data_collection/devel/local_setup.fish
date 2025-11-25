@@ -1,0 +1,1 @@
+/home/ExoSuit/real_robot_data_collection/devel/.private/catkin_tools_prebuild/local_setup.fish

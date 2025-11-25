@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="servo_angle_publisher"
+        type="servo_angle_publisher.py"
+        name="servo_angle_publisher"
+        output="screen" />
+</launch>

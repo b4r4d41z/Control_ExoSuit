@@ -1,0 +1,6 @@
+devel_space: /home/ExoSuit/real_robot_data_collection/devel
+install: false
+install_space: /home/ExoSuit/real_robot_data_collection/install
+profile: default
+source_space: /home/ExoSuit/real_robot_data_collection/src
+workspace: /home/ExoSuit/real_robot_data_collection

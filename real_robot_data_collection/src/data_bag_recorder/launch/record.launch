@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="data_bag_recorder" type="data_bag_recorder.py" name="data_bag_recorder" output="screen"/>
+</launch>
+

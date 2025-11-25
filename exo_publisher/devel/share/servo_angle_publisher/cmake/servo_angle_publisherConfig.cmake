@@ -1,1 +1,0 @@
-/home/ivan/exo_publisher/devel/.private/servo_angle_publisher/share/servo_angle_publisher/cmake/servo_angle_publisherConfig.cmake
