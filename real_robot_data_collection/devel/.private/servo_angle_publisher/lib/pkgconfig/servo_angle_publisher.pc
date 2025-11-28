@@ -1,4 +1,4 @@
-prefix=/home/ExoSuit/real_robot_data_collection/devel/.private/servo_angle_publisher
+prefix=/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/servo_angle_publisher
 
 Name: servo_angle_publisher
 Description: Description of servo_angle_publisher

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ExoSuit/real_robot_data_collection/src/dynamic_biped
+CMAKE_SOURCE_DIR = /home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ExoSuit/real_robot_data_collection/build/dynamic_biped
+CMAKE_BINARY_DIR = /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,9 +137,9 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ExoSuit/real_robot_data_collection/build/dynamic_biped/CMakeFiles /home/ExoSuit/real_robot_data_collection/build/dynamic_biped/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/CMakeFiles /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ExoSuit/real_robot_data_collection/build/dynamic_biped/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

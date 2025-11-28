@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ExoSuit/real_robot_data_collection/src/data_bag_recorder
+CMAKE_SOURCE_DIR = /home/Synthetic_data_collection/real_robot_data_collection/src/data_bag_recorder
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ExoSuit/real_robot_data_collection/build/data_bag_recorder
+CMAKE_BINARY_DIR = /home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder
 
 # Utility rule file for std_msgs_generate_messages_nodejs.
 
@@ -67,6 +67,6 @@ CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean:
 .PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/clean
 
 CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend:
-	cd /home/ExoSuit/real_robot_data_collection/build/data_bag_recorder && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ExoSuit/real_robot_data_collection/src/data_bag_recorder /home/ExoSuit/real_robot_data_collection/src/data_bag_recorder /home/ExoSuit/real_robot_data_collection/build/data_bag_recorder /home/ExoSuit/real_robot_data_collection/build/data_bag_recorder /home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/CMakeFiles/std_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/Synthetic_data_collection/real_robot_data_collection/src/data_bag_recorder /home/Synthetic_data_collection/real_robot_data_collection/src/data_bag_recorder /home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder /home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder /home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/CMakeFiles/std_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/std_msgs_generate_messages_nodejs.dir/depend
 

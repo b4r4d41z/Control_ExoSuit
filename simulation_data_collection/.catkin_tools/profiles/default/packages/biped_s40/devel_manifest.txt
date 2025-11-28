@@ -1,0 +1,4 @@
+biped_s40
+/home/Synthetic_data_collection/simulation_data_collection/devel/.private/biped_s40/share/biped_s40/cmake/biped_s40Config.cmake /home/Synthetic_data_collection/simulation_data_collection/devel/share/biped_s40/cmake/biped_s40Config.cmake
+/home/Synthetic_data_collection/simulation_data_collection/devel/.private/biped_s40/share/biped_s40/cmake/biped_s40Config-version.cmake /home/Synthetic_data_collection/simulation_data_collection/devel/share/biped_s40/cmake/biped_s40Config-version.cmake
+/home/Synthetic_data_collection/simulation_data_collection/devel/.private/biped_s40/lib/pkgconfig/biped_s40.pc /home/Synthetic_data_collection/simulation_data_collection/devel/lib/pkgconfig/biped_s40.pc

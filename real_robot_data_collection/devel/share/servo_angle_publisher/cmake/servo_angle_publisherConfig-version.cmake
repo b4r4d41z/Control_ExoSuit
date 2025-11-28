@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/servo_angle_publisher/share/servo_angle_publisher/cmake/servo_angle_publisherConfig-version.cmake
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/servo_angle_publisher/share/servo_angle_publisher/cmake/servo_angle_publisherConfig-version.cmake

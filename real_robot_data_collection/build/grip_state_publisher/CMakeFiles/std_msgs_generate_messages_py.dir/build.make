@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ExoSuit/real_robot_data_collection/src/grip_state_publisher
+CMAKE_SOURCE_DIR = /home/Synthetic_data_collection/real_robot_data_collection/src/grip_state_publisher
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ExoSuit/real_robot_data_collection/build/grip_state_publisher
+CMAKE_BINARY_DIR = /home/Synthetic_data_collection/real_robot_data_collection/build/grip_state_publisher
 
 # Utility rule file for std_msgs_generate_messages_py.
 
@@ -67,6 +67,6 @@ CMakeFiles/std_msgs_generate_messages_py.dir/clean:
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/clean
 
 CMakeFiles/std_msgs_generate_messages_py.dir/depend:
-	cd /home/ExoSuit/real_robot_data_collection/build/grip_state_publisher && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ExoSuit/real_robot_data_collection/src/grip_state_publisher /home/ExoSuit/real_robot_data_collection/src/grip_state_publisher /home/ExoSuit/real_robot_data_collection/build/grip_state_publisher /home/ExoSuit/real_robot_data_collection/build/grip_state_publisher /home/ExoSuit/real_robot_data_collection/build/grip_state_publisher/CMakeFiles/std_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/Synthetic_data_collection/real_robot_data_collection/build/grip_state_publisher && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/Synthetic_data_collection/real_robot_data_collection/src/grip_state_publisher /home/Synthetic_data_collection/real_robot_data_collection/src/grip_state_publisher /home/Synthetic_data_collection/real_robot_data_collection/build/grip_state_publisher /home/Synthetic_data_collection/real_robot_data_collection/build/grip_state_publisher /home/Synthetic_data_collection/real_robot_data_collection/build/grip_state_publisher/CMakeFiles/std_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/std_msgs_generate_messages_py.dir/depend
 

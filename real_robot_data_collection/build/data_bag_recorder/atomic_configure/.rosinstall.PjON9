@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/Synthetic_data_collection/real_robot_data_collection/devel/.private/data_bag_recorder/setup.sh

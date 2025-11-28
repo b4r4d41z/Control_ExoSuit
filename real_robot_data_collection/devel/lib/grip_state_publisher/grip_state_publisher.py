@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/grip_state_publisher/lib/grip_state_publisher/grip_state_publisher.py
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/grip_state_publisher/lib/grip_state_publisher/grip_state_publisher.py

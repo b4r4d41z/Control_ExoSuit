@@ -1,4 +1,4 @@
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/share/data_bag_recorder/cmake/data_bag_recorderConfig.cmake
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/share/data_bag_recorder/cmake/data_bag_recorderConfig-version.cmake
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/lib/pkgconfig/data_bag_recorder.pc
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/lib/data_bag_recorder/data_bag_recorder.py
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/share/data_bag_recorder/cmake/data_bag_recorderConfig.cmake
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/share/data_bag_recorder/cmake/data_bag_recorderConfig-version.cmake
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/lib/pkgconfig/data_bag_recorder.pc
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/lib/data_bag_recorder/data_bag_recorder.py

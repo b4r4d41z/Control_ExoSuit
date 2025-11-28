@@ -1,4 +1,4 @@
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig.cmake
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig-version.cmake
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/lib/pkgconfig/grip_state_publisher.pc
-Symlinking /home/ExoSuit/real_robot_data_collection/devel/lib/grip_state_publisher/grip_state_publisher.py
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig.cmake
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/share/grip_state_publisher/cmake/grip_state_publisherConfig-version.cmake
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/lib/pkgconfig/grip_state_publisher.pc
+Symlinking /home/Synthetic_data_collection/real_robot_data_collection/devel/lib/grip_state_publisher/grip_state_publisher.py

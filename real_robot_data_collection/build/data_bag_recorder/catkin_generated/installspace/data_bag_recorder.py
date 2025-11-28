@@ -20,13 +20,19 @@ def main():
     button_last = 0
 
     topics = rospy.get_param("~topics", [
+        "/cam_1/color/image_raw/compressed",
+        "/cam_2/color/image_raw/compressed",
+        "/cam_3/color/image_raw/compressed",
+        "/cam_4/color/image_raw/compressed",
         "/control_robot_hand_position",
         "/kuavo_arm_traj",
-        "/grip_state"
+        "/robot_arm_q_v_tau",
+        "/robot_hand_position"
     ])
     button_name = "x"
 
-    rospy.loginfo("Press button '%s' to toggle recording", button_name)
+    rospy.loginfo("Press 'X' to start/stop recording data.")
+
     rate = rospy.Rate(20)
 
     while not rospy.is_shutdown():

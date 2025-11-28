@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/ExoSuit/real_robot_data_collection/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
-export PWD='/home/ExoSuit/real_robot_data_collection/build/catkin_tools_prebuild'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/ExoSuit/real_robot_data_collection/devel/.private/catkin_tools_prebuild/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/ExoSuit/real_robot_data_collection/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
+export PWD='/home/Synthetic_data_collection/real_robot_data_collection/build/catkin_tools_prebuild'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/catkin_tools_prebuild/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/Synthetic_data_collection/real_robot_data_collection/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"
