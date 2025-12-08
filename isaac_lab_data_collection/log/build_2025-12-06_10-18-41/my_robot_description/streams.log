@@ -1,0 +1,20 @@
+[0.018s] Invoking command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description': /usr/bin/cmake /root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description
+[0.139s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.488s] Traceback (most recent call last):
+[0.488s]   File "/opt/ros/jazzy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py", line 21, in <module>
+[0.488s]     from ament_package.templates import get_environment_hook_template_path
+[0.488s] ModuleNotFoundError: No module named 'ament_package'
+[0.498s] [31mCMake Error at /opt/ros/jazzy/share/ament_cmake_core/cmake/ament_cmake_package_templates-extras.cmake:41 (message):
+[0.498s]   execute_process(/usr/bin/python3
+[0.498s]   /opt/ros/jazzy/share/ament_cmake_core/cmake/package_templates/templates_2_cmake.py
+[0.498s]   /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description/ament_cmake_package_templates/templates.cmake)
+[0.498s]   returned error code 1
+[0.498s] Call Stack (most recent call first):
+[0.498s]   /opt/ros/jazzy/share/ament_cmake_core/cmake/ament_cmake_coreConfig.cmake:41 (include)
+[0.498s]   /opt/ros/jazzy/share/ament_cmake/cmake/ament_cmake_export_dependencies-extras.cmake:15 (find_package)
+[0.499s]   /opt/ros/jazzy/share/ament_cmake/cmake/ament_cmakeConfig.cmake:41 (include)
+[0.499s]   CMakeLists.txt:4 (find_package)
+[0.499s] 
+[0.499s] [0m
+[0.499s] -- Configuring incomplete, errors occurred!
+[0.505s] Invoked command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description' returned '1': /usr/bin/cmake /root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description

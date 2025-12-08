@@ -1,0 +1,157 @@
+[0.000000] (-) TimerEvent: {}
+[0.000966] (my_robot_description) JobQueued: {'identifier': 'my_robot_description', 'dependencies': OrderedDict()}
+[0.001181] (my_robot_description) JobStarted: {'identifier': 'my_robot_description'}
+[0.014467] (my_robot_description) JobProgress: {'identifier': 'my_robot_description', 'progress': 'cmake'}
+[0.015180] (my_robot_description) Command: {'cmd': ['/usr/bin/cmake', '/root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description', '-DCATKIN_INSTALL_INTO_PREFIX_ROOT=0', '-DCATKIN_SYMLINK_INSTALL=ON', '-DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description'], 'cwd': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'HOSTNAME': 'rock-5c', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/root', 'OLDPWD': '/root/Synthetic_data_collection', 'ROS_PYTHON_VERSION': '3', 'LC_CTYPE': 'C.UTF-8', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy:/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[0.099754] (-) TimerEvent: {}
+[0.200717] (-) TimerEvent: {}
+[0.301632] (-) TimerEvent: {}
+[0.402575] (-) TimerEvent: {}
+[0.503514] (-) TimerEvent: {}
+[0.604427] (-) TimerEvent: {}
+[0.630437] (my_robot_description) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.704495] (-) TimerEvent: {}
+[0.805010] (-) TimerEvent: {}
+[0.905519] (-) TimerEvent: {}
+[1.006051] (-) TimerEvent: {}
+[1.088084] (my_robot_description) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[1.106152] (-) TimerEvent: {}
+[1.131160] (my_robot_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.206357] (-) TimerEvent: {}
+[1.306946] (-) TimerEvent: {}
+[1.348220] (my_robot_description) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.362513] (my_robot_description) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.363504] (my_robot_description) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.364737] (my_robot_description) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.387414] (my_robot_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.407021] (-) TimerEvent: {}
+[1.507580] (-) TimerEvent: {}
+[1.608615] (-) TimerEvent: {}
+[1.645845] (my_robot_description) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.660625] (my_robot_description) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.661243] (my_robot_description) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.661799] (my_robot_description) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.669357] (my_robot_description) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[1.708688] (-) TimerEvent: {}
+[1.809483] (-) TimerEvent: {}
+[1.910290] (-) TimerEvent: {}
+[1.974681] (my_robot_description) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[2.010443] (-) TimerEvent: {}
+[2.111293] (-) TimerEvent: {}
+[2.212237] (-) TimerEvent: {}
+[2.313173] (-) TimerEvent: {}
+[2.361105] (my_robot_description) StdoutLine: {'line': b'-- Configuring done (2.3s)\n'}
+[2.367101] (my_robot_description) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[2.368587] (my_robot_description) StderrLine: {'line': b'\x1b[33mCMake Warning:\n'}
+[2.369154] (my_robot_description) StderrLine: {'line': b'  Manually-specified variables were not used by the project:\n'}
+[2.369578] (my_robot_description) StderrLine: {'line': b'\n'}
+[2.369988] (my_robot_description) StderrLine: {'line': b'    CATKIN_INSTALL_INTO_PREFIX_ROOT\n'}
+[2.370438] (my_robot_description) StderrLine: {'line': b'    CATKIN_SYMLINK_INSTALL\n'}
+[2.370851] (my_robot_description) StderrLine: {'line': b'\n'}
+[2.371257] (my_robot_description) StderrLine: {'line': b'\x1b[0m\n'}
+[2.371662] (my_robot_description) StdoutLine: {'line': b'-- Build files have been written to: /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description\n'}
+[2.381309] (my_robot_description) CommandEnded: {'returncode': 0}
+[2.382829] (my_robot_description) JobProgress: {'identifier': 'my_robot_description', 'progress': 'build'}
+[2.384079] (my_robot_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', '--', '-j8', '-l8'], 'cwd': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'HOSTNAME': 'rock-5c', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/root', 'OLDPWD': '/root/Synthetic_data_collection', 'ROS_PYTHON_VERSION': '3', 'LC_CTYPE': 'C.UTF-8', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy:/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[2.413302] (-) TimerEvent: {}
+[2.500358] (my_robot_description) CommandEnded: {'returncode': 0}
+[2.503408] (my_robot_description) JobProgress: {'identifier': 'my_robot_description', 'progress': 'install'}
+[2.513379] (-) TimerEvent: {}
+[2.522419] (my_robot_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description'], 'cwd': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'HOSTNAME': 'rock-5c', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/aarch64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/root', 'OLDPWD': '/root/Synthetic_data_collection', 'ROS_PYTHON_VERSION': '3', 'LC_CTYPE': 'C.UTF-8', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy:/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[2.538555] (my_robot_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.539436] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/urdf\n'}
+[2.539942] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/urdf/biped_s40.urdf\n'}
+[2.540365] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/launch\n'}
+[2.540940] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/launch/display_launch.py\n'}
+[2.541504] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes\n'}
+[2.541969] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_yaw.STL\n'}
+[2.613517] (-) TimerEvent: {}
+[2.613992] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_roll.STL\n'}
+[2.668697] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/head_yaw.STL\n'}
+[2.671737] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_knee.STL\n'}
+[2.713825] (-) TimerEvent: {}
+[2.730894] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_yaw.STL\n'}
+[2.773490] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_yaw.STL\n'}
+[2.813943] (-) TimerEvent: {}
+[2.816272] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_r_tendon.STL\n'}
+[2.825473] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_pitch.STL\n'}
+[2.835209] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/head_pitch.STL\n'}
+[2.844754] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_l_bar.STL\n'}
+[2.850154] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_foot_pitch.STL\n'}
+[2.853678] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_yaw.STL\n'}
+[2.862972] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_foot_roll.STL\n'}
+[2.891465] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/camera.STL\n'}
+[2.900707] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/camera_base.STL\n'}
+[2.914017] (-) TimerEvent: {}
+[2.938495] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_l_tendon.STL\n'}
+[2.947439] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_pitch.STL\n'}
+[2.956715] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_pitch.STL\n'}
+[3.014169] (-) TimerEvent: {}
+[3.114837] (-) TimerEvent: {}
+[3.215554] (-) TimerEvent: {}
+[3.316221] (-) TimerEvent: {}
+[3.416885] (-) TimerEvent: {}
+[3.517525] (-) TimerEvent: {}
+[3.618237] (-) TimerEvent: {}
+[3.718927] (-) TimerEvent: {}
+[3.819557] (-) TimerEvent: {}
+[3.907686] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_foot_roll.STL\n'}
+[3.919674] (-) TimerEvent: {}
+[3.937477] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_r_tendon.STL\n'}
+[3.946058] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_r_bar.STL\n'}
+[3.951515] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_pitch.STL\n'}
+[4.019809] (-) TimerEvent: {}
+[4.046681] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_l_bar.STL\n'}
+[4.053039] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_pitch.STL\n'}
+[4.063505] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_roll.STL\n'}
+[4.073316] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_roll.STL\n'}
+[4.083776] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_knee.STL\n'}
+[4.119961] (-) TimerEvent: {}
+[4.143564] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_foot_pitch.STL\n'}
+[4.147534] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_roll.STL\n'}
+[4.157957] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_forearm.STL\n'}
+[4.168360] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_roll.STL\n'}
+[4.178510] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/base_link.STL\n'}
+[4.181990] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_forearm.STL\n'}
+[4.192436] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_pitch.STL\n'}
+[4.202606] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_yaw.STL\n'}
+[4.212860] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_yaw.STL\n'}
+[4.220031] (-) TimerEvent: {}
+[4.223093] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_roll.STL\n'}
+[4.320290] (-) TimerEvent: {}
+[4.421172] (-) TimerEvent: {}
+[4.521940] (-) TimerEvent: {}
+[4.622706] (-) TimerEvent: {}
+[4.723426] (-) TimerEvent: {}
+[4.824045] (-) TimerEvent: {}
+[4.924719] (-) TimerEvent: {}
+[5.025589] (-) TimerEvent: {}
+[5.126406] (-) TimerEvent: {}
+[5.227117] (-) TimerEvent: {}
+[5.327768] (-) TimerEvent: {}
+[5.428405] (-) TimerEvent: {}
+[5.529072] (-) TimerEvent: {}
+[5.629773] (-) TimerEvent: {}
+[5.730430] (-) TimerEvent: {}
+[5.831065] (-) TimerEvent: {}
+[5.875607] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_r_bar.STL\n'}
+[5.881386] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_l_tendon.STL\n'}
+[5.891488] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/package_run_dependencies/my_robot_description\n'}
+[5.892675] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/parent_prefix_path/my_robot_description\n'}
+[5.893665] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/ament_prefix_path.sh\n'}
+[5.894383] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/ament_prefix_path.dsv\n'}
+[5.895082] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/path.sh\n'}
+[5.895770] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/path.dsv\n'}
+[5.896476] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.bash\n'}
+[5.897174] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.sh\n'}
+[5.897868] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.zsh\n'}
+[5.898535] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.dsv\n'}
+[5.899194] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/package.dsv\n'}
+[5.900057] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/packages/my_robot_description\n'}
+[5.900907] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/cmake/my_robot_descriptionConfig.cmake\n'}
+[5.901473] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/cmake/my_robot_descriptionConfig-version.cmake\n'}
+[5.902118] (my_robot_description) StdoutLine: {'line': b'-- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/package.xml\n'}
+[5.910700] (my_robot_description) CommandEnded: {'returncode': 0}
+[5.931144] (-) TimerEvent: {}
+[5.981938] (my_robot_description) JobEnded: {'identifier': 'my_robot_description', 'rc': 0}
+[5.984708] (-) EventReactorShutdown: {}

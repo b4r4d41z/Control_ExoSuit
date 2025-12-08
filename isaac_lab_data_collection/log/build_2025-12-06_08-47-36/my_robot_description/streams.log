@@ -1,0 +1,90 @@
+[0.019s] Invoking command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description': /usr/bin/cmake /root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCATKIN_SYMLINK_INSTALL=ON -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description
+[0.630s] -- The C compiler identification is GNU 13.3.0
+[1.087s] -- The CXX compiler identification is GNU 13.3.0
+[1.130s] -- Detecting C compiler ABI info
+[1.347s] -- Detecting C compiler ABI info - done
+[1.361s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.362s] -- Detecting C compile features
+[1.364s] -- Detecting C compile features - done
+[1.386s] -- Detecting CXX compiler ABI info
+[1.645s] -- Detecting CXX compiler ABI info - done
+[1.660s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.660s] -- Detecting CXX compile features
+[1.661s] -- Detecting CXX compile features - done
+[1.669s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[1.974s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[2.361s] -- Configuring done (2.3s)
+[2.366s] -- Generating done (0.0s)
+[2.368s] [33mCMake Warning:
+[2.368s]   Manually-specified variables were not used by the project:
+[2.369s] 
+[2.369s]     CATKIN_INSTALL_INTO_PREFIX_ROOT
+[2.370s]     CATKIN_SYMLINK_INSTALL
+[2.370s] 
+[2.370s] [0m
+[2.371s] -- Build files have been written to: /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description
+[2.381s] Invoked command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description' returned '0': /usr/bin/cmake /root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCATKIN_SYMLINK_INSTALL=ON -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description
+[2.384s] Invoking command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description': /usr/bin/cmake --build /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description -- -j8 -l8
+[2.500s] Invoked command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description' returned '0': /usr/bin/cmake --build /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description -- -j8 -l8
+[2.522s] Invoking command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description': /usr/bin/cmake --install /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description
+[2.538s] -- Install configuration: ""
+[2.539s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/urdf
+[2.539s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/urdf/biped_s40.urdf
+[2.540s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/launch
+[2.540s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/launch/display_launch.py
+[2.541s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes
+[2.541s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_yaw.STL
+[2.613s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_roll.STL
+[2.668s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/head_yaw.STL
+[2.671s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_knee.STL
+[2.730s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_yaw.STL
+[2.773s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_yaw.STL
+[2.815s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_r_tendon.STL
+[2.824s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_pitch.STL
+[2.834s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/head_pitch.STL
+[2.844s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_l_bar.STL
+[2.849s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_foot_pitch.STL
+[2.853s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_yaw.STL
+[2.862s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_foot_roll.STL
+[2.891s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/camera.STL
+[2.900s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/camera_base.STL
+[2.938s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_l_tendon.STL
+[2.947s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_pitch.STL
+[2.956s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_leg_pitch.STL
+[3.907s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_foot_roll.STL
+[3.937s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_r_tendon.STL
+[3.945s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_r_bar.STL
+[3.951s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_pitch.STL
+[4.046s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_l_bar.STL
+[4.052s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_pitch.STL
+[4.063s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_roll.STL
+[4.072s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_hand_roll.STL
+[4.083s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_knee.STL
+[4.143s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_foot_pitch.STL
+[4.147s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_roll.STL
+[4.157s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_forearm.STL
+[4.168s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_hand_roll.STL
+[4.178s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/base_link.STL
+[4.181s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_forearm.STL
+[4.192s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_pitch.STL
+[4.202s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_arm_yaw.STL
+[4.212s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_arm_yaw.STL
+[4.222s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_leg_roll.STL
+[5.875s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/l_r_bar.STL
+[5.881s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/meshes/r_l_tendon.STL
+[5.891s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/package_run_dependencies/my_robot_description
+[5.892s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/parent_prefix_path/my_robot_description
+[5.893s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/ament_prefix_path.sh
+[5.894s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/ament_prefix_path.dsv
+[5.894s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/path.sh
+[5.895s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/environment/path.dsv
+[5.896s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.bash
+[5.896s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.sh
+[5.897s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.zsh
+[5.898s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/local_setup.dsv
+[5.898s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/package.dsv
+[5.899s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/ament_index/resource_index/packages/my_robot_description
+[5.900s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/cmake/my_robot_descriptionConfig.cmake
+[5.901s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/cmake/my_robot_descriptionConfig-version.cmake
+[5.901s] -- Installing: /root/Synthetic_data_collection/isaac_lab_data_collection/install/my_robot_description/share/my_robot_description/package.xml
+[5.910s] Invoked command in '/root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description' returned '0': /usr/bin/cmake --install /root/Synthetic_data_collection/isaac_lab_data_collection/build/my_robot_description
