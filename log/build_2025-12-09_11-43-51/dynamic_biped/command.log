@@ -1,0 +1,1 @@
+Invoking command in '/root/Synthetic_data_collection/build/dynamic_biped': /usr/bin/cmake /root/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/dynamic_biped

@@ -9,7 +9,7 @@ def generate_launch_description():
     package_name = 'my_robot_description'
     pkg_share = get_package_share_directory(package_name)
 
-    urdf_file = os.path.join(pkg_share, 'urdf', 'biped_s40.urdf')
+    urdf_file = os.path.join(pkg_share, 'urdf', 'biped_s40_primitives.urdf')
     with open(urdf_file, 'r') as f:
         robot_description = f.read()
 

@@ -1,0 +1,40 @@
+[0.024s] Invoking command in '/root/Synthetic_data_collection/build/biped_s40': /usr/bin/cmake /root/Synthetic_data_collection/simulation_data_collection/src/biped_s40 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/biped_s40
+[0.122s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.123s]   Compatibility with CMake < 3.5 will be removed from a future version of
+[0.123s]   CMake.
+[0.123s] 
+[0.124s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.124s]   CMake that the project does not need compatibility with older versions.
+[0.125s] 
+[0.125s] [0m
+[1.945s] -- The C compiler identification is GNU 13.3.0
+[3.105s] -- The CXX compiler identification is GNU 13.3.0
+[3.164s] -- Detecting C compiler ABI info
+[3.594s] -- Detecting C compiler ABI info - done
+[3.638s] -- Check for working C compiler: /usr/bin/cc - skipped
+[3.639s] -- Detecting C compile features
+[3.640s] -- Detecting C compile features - done
+[3.753s] -- Detecting CXX compiler ABI info
+[4.055s] -- Detecting CXX compiler ABI info - done
+[4.072s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[4.073s] -- Detecting CXX compile features
+[4.074s] -- Detecting CXX compile features - done
+[4.132s] -- Configuring incomplete, errors occurred!
+[4.133s] [31mCMake Error at CMakeLists.txt:5 (find_package):
+[4.134s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[4.134s]   asked CMake to find a package configuration file provided by "catkin", but
+[4.135s]   CMake did not find one.
+[4.135s] 
+[4.135s]   Could not find a package configuration file provided by "catkin" with any
+[4.136s]   of the following names:
+[4.136s] 
+[4.137s]     catkinConfig.cmake
+[4.137s]     catkin-config.cmake
+[4.138s] 
+[4.138s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[4.138s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[4.139s]   provides a separate development package or SDK, be sure it has been
+[4.139s]   installed.
+[4.140s] 
+[4.140s] [0m
+[4.142s] Invoked command in '/root/Synthetic_data_collection/build/biped_s40' returned '1': /usr/bin/cmake /root/Synthetic_data_collection/simulation_data_collection/src/biped_s40 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/biped_s40

@@ -1,0 +1,40 @@
+[0.023s] Invoking command in '/root/Synthetic_data_collection/build/servo_angle_publisher': /usr/bin/cmake /root/Synthetic_data_collection/real_robot_data_collection/src/servo_angle_publisher -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/servo_angle_publisher
+[0.115s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.116s]   Compatibility with CMake < 3.5 will be removed from a future version of
+[0.116s]   CMake.
+[0.117s] 
+[0.117s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.117s]   CMake that the project does not need compatibility with older versions.
+[0.118s] 
+[0.118s] [0m
+[1.935s] -- The C compiler identification is GNU 13.3.0
+[3.107s] -- The CXX compiler identification is GNU 13.3.0
+[3.154s] -- Detecting C compiler ABI info
+[3.549s] -- Detecting C compiler ABI info - done
+[3.566s] -- Check for working C compiler: /usr/bin/cc - skipped
+[3.579s] -- Detecting C compile features
+[3.612s] -- Detecting C compile features - done
+[3.740s] -- Detecting CXX compiler ABI info
+[4.044s] -- Detecting CXX compiler ABI info - done
+[4.060s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[4.061s] -- Detecting CXX compile features
+[4.061s] -- Detecting CXX compile features - done
+[4.110s] [31mCMake Error at CMakeLists.txt:4 (find_package):
+[4.111s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[4.111s]   asked CMake to find a package configuration file provided by "catkin", but
+[4.112s]   CMake did not find one.
+[4.112s] 
+[4.113s]   Could not find a package configuration file provided by "catkin" with any
+[4.113s]   of the following names:
+[4.114s] 
+[4.114s]     catkinConfig.cmake
+[4.115s]     catkin-config.cmake
+[4.116s] 
+[4.117s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[4.118s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[4.119s]   provides a separate development package or SDK, be sure it has been
+[4.120s]   installed.
+[4.120s] 
+[4.121s] [0m
+[4.130s] -- Configuring incomplete, errors occurred!
+[4.131s] Invoked command in '/root/Synthetic_data_collection/build/servo_angle_publisher' returned '1': /usr/bin/cmake /root/Synthetic_data_collection/real_robot_data_collection/src/servo_angle_publisher -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/servo_angle_publisher
