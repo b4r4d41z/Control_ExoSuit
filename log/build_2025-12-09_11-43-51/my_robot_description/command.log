@@ -1,0 +1,1 @@
+Invoking command in '/root/Synthetic_data_collection/build/my_robot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/my_robot_description

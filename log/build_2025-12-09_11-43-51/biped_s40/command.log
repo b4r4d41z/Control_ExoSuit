@@ -1,0 +1,2 @@
+Invoking command in '/root/Synthetic_data_collection/build/biped_s40': /usr/bin/cmake /root/Synthetic_data_collection/simulation_data_collection/src/biped_s40 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/biped_s40
+Invoked command in '/root/Synthetic_data_collection/build/biped_s40' returned '1': /usr/bin/cmake /root/Synthetic_data_collection/simulation_data_collection/src/biped_s40 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/root/Synthetic_data_collection/install/biped_s40
