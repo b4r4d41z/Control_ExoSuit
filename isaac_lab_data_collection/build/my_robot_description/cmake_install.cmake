@@ -45,8 +45,8 @@ endif()
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/my_robot_description" TYPE DIRECTORY FILES
     "/root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description/urdf"
-    "/root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description/launch"
     "/root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description/meshes"
+    "/root/Synthetic_data_collection/isaac_lab_data_collection/src/my_robot_description/launch"
     )
 endif()
 

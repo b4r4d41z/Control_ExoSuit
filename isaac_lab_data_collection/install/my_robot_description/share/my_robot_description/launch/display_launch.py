@@ -1,46 +1,51 @@
+import os
+
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
-import os
 
 
 def generate_launch_description():
-    # Get path to this package
-    pkg_share = get_package_share_directory('my_robot_description')
+    package_name = 'my_robot_description'
+    pkg_share = get_package_share_directory(package_name)
 
-    # Path to URDF file
     urdf_file = os.path.join(pkg_share, 'urdf', 'biped_s40.urdf')
+    with open(urdf_file, 'r') as f:
+        robot_description = f.read()
 
-    # Read URDF into a string
-    with open(urdf_file, 'r') as inf:
-        robot_description = inf.read()
-
-    # Joint state publisher with GUI sliders
     joint_state_publisher = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher'
     )
 
-    # Robot state publisher publishes TF and /robot_description
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
-        output='screen',
         parameters=[{'robot_description': robot_description}]
     )
 
-    # Start RViz2 without predefined config
+    static_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='world_to_base_link',
+        arguments=[
+            '0', '0', '0.88',   # x y z
+            '0', '0', '0',      # roll pitch yaw
+            'world', 'base_link'
+        ]
+    )
+
     rviz = Node(
         package='rviz2',
         executable='rviz2',
-        name='rviz2',
-        output='screen'
+        name='rviz2'
     )
 
     return LaunchDescription([
         joint_state_publisher,
         robot_state_publisher,
+        static_tf,
         rviz
     ])

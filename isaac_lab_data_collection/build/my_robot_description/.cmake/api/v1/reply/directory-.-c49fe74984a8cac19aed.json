@@ -230,8 +230,8 @@
 			"paths" : 
 			[
 				"urdf",
-				"launch",
-				"meshes"
+				"meshes",
+				"launch"
 			],
 			"type" : "directory"
 		},
