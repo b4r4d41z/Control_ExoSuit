@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
 import rospy
-from std_msgs.msg import Float32MultiArray
 import math
-import time
 import scservo_sdk as scs
 from sensor_msgs.msg import JointState
 from joyconrobotics import JoyconRobotics  # add Joy-Con
 
-
 PROTOCOL_VERSION = 0
 TIMEOUT_MS = 1000
-LEFT_USB_PORT = "/dev/ttyACM0"
-RIGHT_USB_PORT = "/dev/ttyACM1"
-MODEL_RESOLUTION = 4096
-NUM_READ_RETRY = 20
-NUM_WRITE_RETRY = 20
+LEFT_USB_PORT = "/dev/ttyACM0" #for simulation collection in rviz change 0->1, for real robot  1->0
+RIGHT_USB_PORT = "/dev/ttyACM1" #for simulation change 1->0, for real robot  0->1
 
 SCS_SERIES_CONTROL_TABLE = {
     "Model": (3, 2),
@@ -68,12 +62,15 @@ SCS_SERIES_CONTROL_TABLE = {
 TICKS_PER_REV = 4096
 TICKS_TO_DEG = 360.0 / TICKS_PER_REV
 
-INVERTED_MOTORS = [1, 9]
+#INVERTED_MOTORS = [1, 8, 9, 13] #for real robot
 
+INVERTED_MOTORS = [1, 8, 9, 13]
 
 class FeetechMotor:
     def __init__(self, port):
         self.port = port
+        self.port_handler = None
+        self.packet_handler = None
 
     def connect(self):
         self.port_handler = scs.PortHandler(self.port)
@@ -85,21 +82,20 @@ class FeetechMotor:
     def disconnect(self):
         if self.port_handler:
             self.port_handler.closePort()
+        self.port_handler = None
         self.packet_handler = None
 
     def read_positions(self, motor_ids):
-        addr, bytes = SCS_SERIES_CONTROL_TABLE["Present_Position"]
-        group = scs.GroupSyncRead(self.port_handler, self.packet_handler, addr, bytes)
+        addr, size_bytes = SCS_SERIES_CONTROL_TABLE["Present_Position"]
+        group = scs.GroupSyncRead(self.port_handler, self.packet_handler, addr, size_bytes)
         for idx in motor_ids:
             group.addParam(idx)
 
         comm = group.txRxPacket()
         if comm != scs.COMM_SUCCESS:
-            raise ConnectionError(
-                f"Read failed: {self.packet_handler.getTxRxResult(comm)}"
-            )
+            raise ConnectionError(f"Read failed: {self.packet_handler.getTxRxResult(comm)}")
 
-        positions = [group.getData(idx, addr, bytes) for idx in motor_ids]
+        positions = [group.getData(idx, addr, size_bytes) for idx in motor_ids]
         return positions
 
 
@@ -127,34 +123,56 @@ if __name__ == "__main__":
     right_motor_ids = [8, 9, 10, 11, 12, 13, 14]
 
     joint_names = [
-        "j1", "j2", "j3", "j4",
-        "j5", "j6", "j7",
-        "j8", "j9", "j10", "j11",
-        "j12", "j13", "j14"
+        "zarm_r1_joint", "zarm_r2_joint", "zarm_r3_joint", "zarm_r4_joint",
+        "zarm_r5_joint", "zarm_r6_joint", "zarm_r7_joint",
+        "zarm_l1_joint", "zarm_l2_joint", "zarm_l3_joint", "zarm_l4_joint",
+        "zarm_l5_joint", "zarm_l6_joint", "zarm_l7_joint"
     ]
 
-    previous_positions_left = left_motor_comm.read_positions(left_motor_ids)
-    previous_positions_right = right_motor_comm.read_positions(right_motor_ids)
+    # FIX: delay baseline init until first start
+    previous_positions_left = None
+    previous_positions_right = None
+
+    # FIX: keep accumulators zero until first start
     accumulated_degrees_left = [0.0] * len(left_motor_ids)
     accumulated_degrees_right = [0.0] * len(right_motor_ids)
 
     # ============== index mapping  =============
-    left_index_map = [1, 0, 2, 3, 4, 5, 6]     # swap j1 and j2
-    right_index_map = [1, 0, 2, 3, 4, 5, 6]    # swap j8 and j9
-    # ===========================================
+    left_index_map = [1, 0, 2, 3, 4, 5, 6]
+    right_index_map = [1, 0, 2, 3, 4, 5, 6]
+    # ==========================================
 
     jc = JoyconRobotics("right", without_rest_init=True)
     publishing = False
     last_button = 0
 
-    rospy.loginfo("Press 'A' to start/stop publishing servo angle data.")
+    rospy.loginfo("Press 'A' to start/stop publishing servo angle data (degrees).")
 
     try:
         while not rospy.is_shutdown():
             state = jc.button.get_button_a()
+
             if state == 1 and last_button == 0:
                 publishing = not publishing
-                rospy.loginfo("Publishing: %s", publishing)
+
+                if publishing:
+                    # FIX: capture baseline on start button press
+                    previous_positions_left = left_motor_comm.read_positions(left_motor_ids)
+                    previous_positions_right = right_motor_comm.read_positions(right_motor_ids)
+
+                    # FIX: reset accumulators at start
+                    accumulated_degrees_left = [0.0] * len(left_motor_ids)
+                    accumulated_degrees_right = [0.0] * len(right_motor_ids)
+
+                    rospy.loginfo("Publishing: True (baseline reset)")
+
+                    # FIX: skip publishing in the same cycle
+                    last_button = state
+                    rate.sleep()
+                    continue
+                else:
+                    rospy.loginfo("Publishing: False")
+
             last_button = state
 
             if publishing:
@@ -166,8 +184,9 @@ if __name__ == "__main__":
                 ):
                     delta = calculate_delta(curr, prev)
                     value = delta * TICKS_TO_DEG
+
                     if motor_id in INVERTED_MOTORS:
-                        value *= -1
+                        value *= -1.0
                     accumulated_degrees_left[i] += value
 
                 for i, (curr, prev, motor_id) in enumerate(
@@ -175,14 +194,13 @@ if __name__ == "__main__":
                 ):
                     delta = calculate_delta(curr, prev)
                     value = delta * TICKS_TO_DEG
+
                     if motor_id in INVERTED_MOTORS:
-                        value *= -1
+                        value *= -1.0
                     accumulated_degrees_right[i] += value
 
-                # === apply mapping before publishing ===
                 logical_left = [accumulated_degrees_left[i] for i in left_index_map]
                 logical_right = [accumulated_degrees_right[i] for i in right_index_map]
-                # =======================================
 
                 joint_msg = JointState()
                 joint_msg.header.stamp = rospy.Time.now()

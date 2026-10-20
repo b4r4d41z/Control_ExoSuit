@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ExoSuit/real_robot_data_collection/install")
+  set(CMAKE_INSTALL_PREFIX "/home/Synthetic_data_collection/real_robot_data_collection/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/gtest/googletest/cmake_install.cmake")
+  include("/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/gtest/googletest/cmake_install.cmake")
 
 endif()
 

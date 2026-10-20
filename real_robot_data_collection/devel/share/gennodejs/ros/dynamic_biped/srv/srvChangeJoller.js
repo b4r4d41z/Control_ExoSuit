@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped/srv/srvChangeJoller.js
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped/srv/srvChangeJoller.js

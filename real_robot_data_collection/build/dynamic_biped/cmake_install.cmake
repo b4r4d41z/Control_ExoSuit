@@ -1,8 +1,8 @@
-# Install script for directory: /home/ExoSuit/real_robot_data_collection/src/dynamic_biped
+# Install script for directory: /home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ExoSuit/real_robot_data_collection/install")
+  set(CMAKE_INSTALL_PREFIX "/home/Synthetic_data_collection/real_robot_data_collection/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,187 +49,187 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/_setup_util.py")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/env.sh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.bash;/home/ExoSuit/real_robot_data_collection/install/local_setup.bash")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.bash;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.bash"
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.bash"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.bash"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.sh;/home/ExoSuit/real_robot_data_collection/install/local_setup.sh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.sh;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.sh"
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.sh"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.sh"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.zsh;/home/ExoSuit/real_robot_data_collection/install/local_setup.zsh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.zsh;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.zsh"
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.zsh"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.zsh"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.fish;/home/ExoSuit/real_robot_data_collection/install/local_setup.fish")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.fish;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.fish")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.fish"
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.fish"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/setup.fish"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/local_setup.fish"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/.rosinstall")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/.rosinstall")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/msg" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/armHandPose.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/ECJointMotordata.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/handRotationEular.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/handRotation.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/QuaternionArray.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/recordArmHandPose.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotArmInfo.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotArmQVVD.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robot_hand_eff.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotHandPosition.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotHeadMotionData.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotPhase.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotQVTau.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/robotTorsoState.msg"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/msg/walkCommand.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/armHandPose.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/ECJointMotordata.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/handRotationEular.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/handRotation.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/QuaternionArray.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/recordArmHandPose.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotArmInfo.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotArmQVVD.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robot_hand_eff.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotHandPosition.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotHeadMotionData.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotPhase.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotQVTau.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/robotTorsoState.msg"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/msg/walkCommand.msg"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/srv" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/changeAMBACCtrlMode.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/changeArmCtrlMode.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/controlEndHand.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/srvchangeCtlMode.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/srvChangeJoller.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/srvChangePhases.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/srvClearPositionCMD.srv"
-    "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/srv/srvManiInst.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/changeAMBACCtrlMode.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/changeArmCtrlMode.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/controlEndHand.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/srvchangeCtlMode.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/srvChangeJoller.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/srvChangePhases.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/srvClearPositionCMD.srv"
+    "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/srv/srvManiInst.srv"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/cmake" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/cmake" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/include/dynamic_biped")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/include/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/share/roseus/ros/dynamic_biped")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/share/roseus/ros/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/share/common-lisp/ros/dynamic_biped")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/share/common-lisp/ros/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/share/gennodejs/ros/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/lib/python3/dist-packages/dynamic_biped")
+  execute_process(COMMAND "/usr/bin/python3" -m compileall "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/lib/python3/dist-packages/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/lib/python3/dist-packages/dynamic_biped")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages" TYPE DIRECTORY FILES "/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/lib/python3/dist-packages/dynamic_biped")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/cmake" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/cmake" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_biped-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped/cmake" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_bipedConfig.cmake"
-    "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_bipedConfig-version.cmake"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_bipedConfig.cmake"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/dynamic_bipedConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/src/dynamic_biped/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/dynamic_biped" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/dynamic_biped" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/arm_move_X.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/dynamic_biped" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/catkin_generated/installspace/arm_move_X.py")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/gtest/cmake_install.cmake")
+  include("/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/gtest/cmake_install.cmake")
 
 endif()
 
@@ -241,5 +241,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ExoSuit/real_robot_data_collection/build/dynamic_biped/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

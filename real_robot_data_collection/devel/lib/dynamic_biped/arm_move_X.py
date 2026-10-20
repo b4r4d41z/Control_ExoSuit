@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/dynamic_biped/lib/dynamic_biped/arm_move_X.py
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/dynamic_biped/lib/dynamic_biped/arm_move_X.py

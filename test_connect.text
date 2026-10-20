@@ -1,0 +1,14 @@
+source /opt/ros/noetic/setup.bash
+
+export ROS_MASTER_URI=https://192.168.1.112:11311
+export ROS_URI=192.168.1.112
+unset ROS_HOSTNAME
+________________________________________________
+
+cd /home/Synthetic_data_collection/real_robot_data_collection
+
+source /opt/ros/noetic/setup.bash
+source devel/setup.bash
+
+export ROS_MASTER_URI=http://192.168.1.112:11311
+export ROS_IP=192.168.1.112

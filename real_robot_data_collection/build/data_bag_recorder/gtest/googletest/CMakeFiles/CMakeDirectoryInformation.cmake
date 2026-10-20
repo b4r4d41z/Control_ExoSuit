@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/usr/src/googletest")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

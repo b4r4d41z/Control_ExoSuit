@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/ExoSuit/real_robot_data_collection/install/setup.sh
+    local-name: /home/Synthetic_data_collection/real_robot_data_collection/install/setup.sh

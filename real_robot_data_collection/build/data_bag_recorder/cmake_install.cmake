@@ -1,8 +1,8 @@
-# Install script for directory: /home/ExoSuit/real_robot_data_collection/src/data_bag_recorder
+# Install script for directory: /home/Synthetic_data_collection/real_robot_data_collection/src/data_bag_recorder
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/ExoSuit/real_robot_data_collection/install")
+  set(CMAKE_INSTALL_PREFIX "/home/Synthetic_data_collection/real_robot_data_collection/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,122 +49,122 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/_setup_util.py")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/env.sh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.bash;/home/ExoSuit/real_robot_data_collection/install/local_setup.bash")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.bash;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.bash"
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.bash"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.bash"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.sh;/home/ExoSuit/real_robot_data_collection/install/local_setup.sh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.sh;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.sh"
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.sh"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.sh"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.zsh;/home/ExoSuit/real_robot_data_collection/install/local_setup.zsh")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.zsh;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.zsh"
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.zsh"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.zsh"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/setup.fish;/home/ExoSuit/real_robot_data_collection/install/local_setup.fish")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/setup.fish;/home/Synthetic_data_collection/real_robot_data_collection/install/local_setup.fish")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.fish"
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.fish"
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/setup.fish"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/local_setup.fish"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/home/ExoSuit/real_robot_data_collection/install/.rosinstall")
+   "/home/Synthetic_data_collection/real_robot_data_collection/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/home/ExoSuit/real_robot_data_collection/install" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/home/Synthetic_data_collection/real_robot_data_collection/install" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/.rosinstall")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorder.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorder.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/data_bag_recorder/cmake" TYPE FILE FILES
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorderConfig.cmake"
-    "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorderConfig-version.cmake"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorderConfig.cmake"
+    "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorderConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/data_bag_recorder" TYPE FILE FILES "/home/ExoSuit/real_robot_data_collection/src/data_bag_recorder/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/data_bag_recorder" TYPE FILE FILES "/home/Synthetic_data_collection/real_robot_data_collection/src/data_bag_recorder/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/data_bag_recorder" TYPE PROGRAM FILES "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorder.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/data_bag_recorder" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorder.py")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/gtest/cmake_install.cmake")
+  include("/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/gtest/cmake_install.cmake")
 
 endif()
 
@@ -176,5 +176,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ExoSuit/real_robot_data_collection/build/data_bag_recorder/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -19,9 +19,9 @@ except ImportError:
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/ExoSuit/real_robot_data_collection/devel/.private/catkin_tools_prebuild/env.sh')
+code = generate_environment_script('/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/catkin_tools_prebuild/env.sh')
 
-output_filename = '/home/ExoSuit/real_robot_data_collection/build/catkin_tools_prebuild/catkin_generated/setup_cached.sh'
+output_filename = '/home/Synthetic_data_collection/real_robot_data_collection/build/catkin_tools_prebuild/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:
     # print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))

@@ -18,7 +18,7 @@ if not type -q bass
 end
 
 if test -z $_CATKIN_SETUP_DIR
-    set _CATKIN_SETUP_DIR /home/ExoSuit/real_robot_data_collection/devel/.private/data_bag_recorder
+    set _CATKIN_SETUP_DIR /home/Synthetic_data_collection/real_robot_data_collection/devel/.private/data_bag_recorder
 end
 
 set _SETUP_UTIL "$_CATKIN_SETUP_DIR/_setup_util.py"

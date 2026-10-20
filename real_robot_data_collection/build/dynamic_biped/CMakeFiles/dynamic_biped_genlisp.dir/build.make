@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ExoSuit/real_robot_data_collection/src/dynamic_biped
+CMAKE_SOURCE_DIR = /home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ExoSuit/real_robot_data_collection/build/dynamic_biped
+CMAKE_BINARY_DIR = /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped
 
 # Utility rule file for dynamic_biped_genlisp.
 
@@ -67,6 +67,6 @@ CMakeFiles/dynamic_biped_genlisp.dir/clean:
 .PHONY : CMakeFiles/dynamic_biped_genlisp.dir/clean
 
 CMakeFiles/dynamic_biped_genlisp.dir/depend:
-	cd /home/ExoSuit/real_robot_data_collection/build/dynamic_biped && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ExoSuit/real_robot_data_collection/src/dynamic_biped /home/ExoSuit/real_robot_data_collection/src/dynamic_biped /home/ExoSuit/real_robot_data_collection/build/dynamic_biped /home/ExoSuit/real_robot_data_collection/build/dynamic_biped /home/ExoSuit/real_robot_data_collection/build/dynamic_biped/CMakeFiles/dynamic_biped_genlisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped /home/Synthetic_data_collection/real_robot_data_collection/src/dynamic_biped /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped /home/Synthetic_data_collection/real_robot_data_collection/build/dynamic_biped/CMakeFiles/dynamic_biped_genlisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/dynamic_biped_genlisp.dir/depend
 

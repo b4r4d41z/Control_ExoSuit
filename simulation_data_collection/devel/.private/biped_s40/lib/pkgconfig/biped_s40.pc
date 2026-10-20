@@ -1,0 +1,8 @@
+prefix=/home/Synthetic_data_collection/simulation_data_collection/devel/.private/biped_s40
+
+Name: biped_s40
+Description: Description of biped_s40
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

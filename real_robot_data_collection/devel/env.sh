@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/catkin_tools_prebuild/env.sh
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/catkin_tools_prebuild/env.sh

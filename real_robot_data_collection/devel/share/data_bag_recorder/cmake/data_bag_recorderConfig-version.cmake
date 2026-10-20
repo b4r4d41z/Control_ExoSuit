@@ -1,1 +1,1 @@
-/home/ExoSuit/real_robot_data_collection/devel/.private/data_bag_recorder/share/data_bag_recorder/cmake/data_bag_recorderConfig-version.cmake
+/home/Synthetic_data_collection/real_robot_data_collection/devel/.private/data_bag_recorder/share/data_bag_recorder/cmake/data_bag_recorderConfig-version.cmake

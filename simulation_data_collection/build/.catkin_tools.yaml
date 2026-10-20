@@ -1,0 +1,6 @@
+devel_space: /home/Synthetic_data_collection/simulation_data_collection/devel
+install: false
+install_space: /home/Synthetic_data_collection/simulation_data_collection/install
+profile: default
+source_space: /home/Synthetic_data_collection/simulation_data_collection/src
+workspace: /home/Synthetic_data_collection/simulation_data_collection

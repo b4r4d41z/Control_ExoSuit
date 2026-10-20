@@ -1,0 +1,1 @@
+/home/Synthetic_data_collection/simulation_data_collection/devel/.private/biped_s40/lib/pkgconfig/biped_s40.pc

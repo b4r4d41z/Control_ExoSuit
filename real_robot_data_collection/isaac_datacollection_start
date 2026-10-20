@@ -1,0 +1,58 @@
+#!/bin/bash
+
+SESSION="isaac_datacollection"
+WORKSPACE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+ROS_MASTER="http://192.168.1.112:11311"
+ROS_IP_ADDR="192.168.1.112"
+
+if [ ! -f "$WORKSPACE_DIR/devel/setup.bash" ]; then
+    echo "ERROR: devel/setup.bash not found in $WORKSPACE_DIR"
+    echo "Place this script in the ROS1 workspace root."
+    exit 1
+fi
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "tmux session '$SESSION' already exists. Attaching..."
+    tmux attach -t "$SESSION"
+    exit 0
+fi
+
+tmux new-session -d -s "$SESSION" -n ros_exosuit
+
+tmux send-keys -t "$SESSION":0.0 "
+cd '$WORKSPACE_DIR'
+source devel/setup.bash
+export ROS_MASTER_URI=$ROS_MASTER
+export ROS_IP=$ROS_IP_ADDR
+unset ROS_HOSTNAME
+roscore
+" C-m
+
+tmux split-window -h -t "$SESSION":0
+
+tmux send-keys -t "$SESSION":0.1 "
+cd '$WORKSPACE_DIR'
+source devel/setup.bash
+export ROS_MASTER_URI=$ROS_MASTER
+export ROS_IP=$ROS_IP_ADDR
+unset ROS_HOSTNAME
+sleep 3
+roslaunch servo_angle_publisher servo_angle.launch
+" C-m
+
+tmux split-window -h -t "$SESSION":0.1
+
+tmux send-keys -t "$SESSION":0.2 "
+cd '$WORKSPACE_DIR'
+source devel/setup.bash
+export ROS_MASTER_URI=$ROS_MASTER
+export ROS_IP=$ROS_IP_ADDR
+unset ROS_HOSTNAME
+sleep 5
+roslaunch grip_state_publisher grip_state.launch
+" C-m
+
+tmux select-layout -t "$SESSION":0 even-horizontal
+tmux select-pane -t "$SESSION":0.0
+tmux attach -t "$SESSION"

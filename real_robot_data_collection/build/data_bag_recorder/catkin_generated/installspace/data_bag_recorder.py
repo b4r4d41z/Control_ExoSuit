@@ -9,24 +9,33 @@ def main():
     rospy.init_node("data_bag_recorder", anonymous=True)
     jc = JoyconRobotics("right", without_rest_init=True)
     
-    # UPDATED PATH: save .bag files to the 'records' folder in project root
-    package_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    project_root = os.path.abspath(os.path.join(package_dir, "../../.."))
-    save_dir = os.path.join(project_root, "records")
+    # Save .bag files to external disk, keep per-project folder
+    project_name = "simulation_data_collection"
+    save_dir = os.path.join("/mnt/data_disk", project_name, "records")
     os.makedirs(save_dir, exist_ok=True)
+
 
     recording = False
     process = None
     button_last = 0
 
     topics = rospy.get_param("~topics", [
+        "/head_camera/color/image_raw/compressed",
+        "/head_camera/color/camera_info",
+        "/left_hand_camera/image_raw/compressed",
+        "/left_hand_camera/camera_info",
+        "/right_hand_camera/image_raw/compressed",
+        "/right_hand_camera/camera_info",
         "/control_robot_hand_position",
         "/kuavo_arm_traj",
-        "/grip_state"
+        "/robot_arm_q_v_tau",
+        "/robot_hand_position"
     ])
+    
     button_name = "x"
 
-    rospy.loginfo("Press button '%s' to toggle recording", button_name)
+    rospy.loginfo("Press 'X' to start/stop recording data.")
+
     rate = rospy.Rate(20)
 
     while not rospy.is_shutdown():
