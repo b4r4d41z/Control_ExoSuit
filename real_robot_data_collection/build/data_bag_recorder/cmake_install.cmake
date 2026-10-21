@@ -162,6 +162,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/data_bag_recorder" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/data_bag_recorder.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/data_bag_recorder" TYPE PROGRAM FILES "/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/catkin_generated/installspace/isaac_record_trigger.py")
+endif()
+
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/Synthetic_data_collection/real_robot_data_collection/build/data_bag_recorder/gtest/cmake_install.cmake")

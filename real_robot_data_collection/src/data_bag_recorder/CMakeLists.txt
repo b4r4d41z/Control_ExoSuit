@@ -11,5 +11,6 @@ catkin_package()
 
 catkin_install_python(PROGRAMS
   scripts/data_bag_recorder.py
+  scripts/isaac_record_trigger.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

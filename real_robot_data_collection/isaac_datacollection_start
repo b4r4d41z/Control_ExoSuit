@@ -19,6 +19,10 @@ if tmux has-session -t "$SESSION" 2>/dev/null; then
 fi
 
 tmux new-session -d -s "$SESSION" -n ros_exosuit
+tmux split-window -h -t "$SESSION":0
+tmux split-window -v -t "$SESSION":0.0
+tmux split-window -v -t "$SESSION":0.1
+tmux select-layout -t "$SESSION":0 tiled
 
 tmux send-keys -t "$SESSION":0.0 "
 cd '$WORKSPACE_DIR'
@@ -28,8 +32,6 @@ export ROS_IP=$ROS_IP_ADDR
 unset ROS_HOSTNAME
 roscore
 " C-m
-
-tmux split-window -h -t "$SESSION":0
 
 tmux send-keys -t "$SESSION":0.1 "
 cd '$WORKSPACE_DIR'
@@ -41,8 +43,6 @@ sleep 3
 roslaunch servo_angle_publisher servo_angle.launch
 " C-m
 
-tmux split-window -h -t "$SESSION":0.1
-
 tmux send-keys -t "$SESSION":0.2 "
 cd '$WORKSPACE_DIR'
 source devel/setup.bash
@@ -53,6 +53,15 @@ sleep 5
 roslaunch grip_state_publisher grip_state.launch
 " C-m
 
-tmux select-layout -t "$SESSION":0 even-horizontal
+tmux send-keys -t "$SESSION":0.3 "
+cd '$WORKSPACE_DIR'
+source devel/setup.bash
+export ROS_MASTER_URI=$ROS_MASTER
+export ROS_IP=$ROS_IP_ADDR
+unset ROS_HOSTNAME
+sleep 5
+roslaunch data_bag_recorder isaac_record_trigger.launch
+" C-m
+
 tmux select-pane -t "$SESSION":0.0
 tmux attach -t "$SESSION"
