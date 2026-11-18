@@ -1,0 +1,30 @@
+zero_to_ready: [ZERO, ELBOWS_OUT, ARMS_UP, READY]
+# Sparse named joint changes in degrees relative to the preceding pose.
+# See README for kinematics. These are model candidates pending scene validation.
+poses:
+  ZERO:
+    zarm_r1_joint: 0
+    zarm_r2_joint: 0
+    zarm_r3_joint: 0
+    zarm_r4_joint: 0
+    zarm_r5_joint: 0
+    zarm_r6_joint: 0
+    zarm_r7_joint: 0
+    zarm_l1_joint: 0
+    zarm_l2_joint: 0
+    zarm_l3_joint: 0
+    zarm_l4_joint: 0
+    zarm_l5_joint: 0
+    zarm_l6_joint: 0
+    zarm_l7_joint: 0
+  ELBOWS_OUT:
+    zarm_r3_joint: -90
+    zarm_l3_joint: 90
+    zarm_r4_joint: -90
+    zarm_l4_joint: -90
+  ARMS_UP:
+    zarm_r1_joint: -30
+    zarm_l1_joint: -30
+  READY:
+    zarm_r3_joint: 0
+    zarm_l3_joint: 0

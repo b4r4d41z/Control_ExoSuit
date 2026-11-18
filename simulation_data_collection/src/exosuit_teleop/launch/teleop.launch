@@ -1,0 +1,20 @@
+<launch>
+  <arg name="safety_file" default="$(find exosuit_teleop)/config/safety_limits.yaml"/>
+  <arg name="trajectories_file" default="$(find exosuit_teleop)/config/trajectories.yaml"/>
+  <arg name="model_urdf" default="$(find biped_s40)/urdf/biped_s40.urdf"/>
+  <arg name="left_serial" default="/dev/ttyACM0"/>
+  <arg name="right_serial" default="/dev/ttyACM1"/>
+  <arg name="left_joycon" default=""/>
+  <arg name="right_joycon" default=""/>
+  <node pkg="exosuit_teleop" type="exosuit_teleop_node.py" name="exosuit_teleop"
+        output="screen" required="true" respawn="false" clear_params="true">
+    <rosparam command="load" file="$(find exosuit_teleop)/config/joint_mapping.yaml"/>
+    <rosparam command="load" file="$(arg trajectories_file)"/>
+    <rosparam command="load" file="$(arg safety_file)"/>
+    <param name="model_urdf" value="$(arg model_urdf)"/>
+    <param name="left_serial" value="$(arg left_serial)"/>
+    <param name="right_serial" value="$(arg right_serial)"/>
+    <param name="left_joycon" value="$(arg left_joycon)"/>
+    <param name="right_joycon" value="$(arg right_joycon)"/>
+  </node>
+</launch>

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+# ROS/catkin
+build/
+devel/
+logs/
+.catkin_tools/
+# Temporary files
+*.log
+*.mtp
+
+#General datasets
+*.bag
+*.mcap
+pose.patch

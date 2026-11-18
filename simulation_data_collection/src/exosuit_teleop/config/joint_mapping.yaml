@@ -1,0 +1,18 @@
+# Preserve wire order and signs from servo_angle_publisher.py in e57c627.
+# Physical LEFT serial bus supplies the first seven (robot RIGHT) entries.
+# Columns: ROS joint name, physical encoder ID, sign.
+joints:
+  - [zarm_r1_joint, 2, 1]
+  - [zarm_r2_joint, 1, -1]
+  - [zarm_r3_joint, 3, 1]
+  - [zarm_r4_joint, 4, 1]
+  - [zarm_r5_joint, 5, 1]
+  - [zarm_r6_joint, 6, 1]
+  - [zarm_r7_joint, 7, 1]
+  - [zarm_l1_joint, 9, -1]
+  - [zarm_l2_joint, 8, -1]
+  - [zarm_l3_joint, 10, 1]
+  - [zarm_l4_joint, 11, 1]
+  - [zarm_l5_joint, 12, 1]
+  - [zarm_l6_joint, 13, -1]
+  - [zarm_l7_joint, 14, 1]
