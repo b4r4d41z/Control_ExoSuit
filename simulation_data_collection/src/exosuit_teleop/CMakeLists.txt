@@ -3,7 +3,7 @@ project(exosuit_teleop)
 find_package(catkin REQUIRED COMPONENTS dynamic_biped rosgraph rospy sensor_msgs std_msgs)
 catkin_python_setup()
 catkin_package(CATKIN_DEPENDS dynamic_biped rosgraph rospy sensor_msgs std_msgs)
-catkin_install_python(PROGRAMS scripts/exosuit_teleop_node.py
+catkin_install_python(PROGRAMS scripts/exosuit_teleop_node.py scripts/teleop_log_view.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 install(DIRECTORY config launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 if(CATKIN_ENABLE_TESTING)
