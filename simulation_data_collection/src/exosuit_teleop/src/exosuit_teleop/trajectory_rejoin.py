@@ -36,7 +36,9 @@ class PathPlanner:
             key = (a, b)
             if key not in cache:
                 segment = Segment.between(a, b, self.limits, self.period)
-                cache[key] = segment if validate_segment(segment, self.spacing, valid) else None
+                cache[key] = segment if self.collision_free is None or validate_segment(
+                    segment, self.spacing, valid
+                ) else None
             return cache[key]
 
         def valid(pose):
@@ -53,6 +55,10 @@ class PathPlanner:
                 segments.append(segment)
             return tuple(segments)
 
+        if kind == "live":
+            return validate_segment(Segment(start, path[0], self.period), self.spacing, valid)
+        if kind == "rejoin" and self.collision_free is None:
+            return route((start, path[-1]))
         if kind != "rejoin":
             return route((start,) + path)
         for _, point, suffix in candidates(start, path):

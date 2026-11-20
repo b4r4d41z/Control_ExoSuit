@@ -6,8 +6,8 @@ from threading import Event
 from types import SimpleNamespace
 
 from exosuit_teleop.encoder_reader import FeetechReaders, RelativeEncoders, tick_delta
-from exosuit_teleop.joycon_input import ButtonEdges
-from exosuit_teleop.ros_adapter import graph_health
+from exosuit_teleop.joycon_input import JoyCon
+from exosuit_teleop.ros_adapter import arm_graph
 from exosuit_teleop.safety import (
     ARM, ARM_FEEDBACK, COMMAND_TYPES, Feedback, Safety, decode_feedback, fresh,
 )
@@ -33,9 +33,9 @@ class EncodersTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             encoder.target({1: 1, 2: 7}, 2.0)
 
-    def test_serial_read_checks_every_id_and_device_error(self):
-        response = [None]
-        ports, reads = [], []
+    def test_group_reads_verify_both_buses_and_close_ports(self):
+        missing = [None]
+        ports, groups = [], []
 
         class Port:
             def __init__(self, path):
@@ -49,31 +49,69 @@ class EncodersTest(unittest.TestCase):
             def closePort(self):
                 self.is_open = False
 
-        def read(port, encoder, address):
-            reads.append((port.path, encoder, address))
-            return (encoder, 0, int(encoder == response[0]))
+            def setPacketTimeoutMillis(self, timeout):
+                self.timeout = timeout
 
-        sdk = SimpleNamespace(PortHandler=Port, COMM_SUCCESS=0,
-                              PacketHandler=lambda _: SimpleNamespace(read2ByteTxRx=read))
+        class Group:
+            def __init__(self, port, _, address, size):
+                self.path, self.address, self.size = port.path, address, size
+                self.ids = []
+                groups.append(self)
+
+            def addParam(self, encoder):
+                self.ids.append(encoder)
+
+            def txRxPacket(self):
+                return 0
+
+            def isAvailable(self, encoder, address, size):
+                return encoder in self.ids and encoder != missing[0] and (
+                    address, size) == (self.address, self.size)
+
+            def getData(self, encoder, address, size):
+                return encoder
+
+        sdk = SimpleNamespace(PortHandler=Port, COMM_SUCCESS=0, GroupSyncRead=Group,
+                              PacketHandler=lambda protocol: protocol)
         with patch.dict(sys.modules, {"scservo_sdk": sdk}):
             sensor = FeetechReaders("/tmp/left", "/tmp/right")
             self.addCleanup(sensor.close)
             self.assertEqual(sensor.read(), {i: i for i in range(1, 15)})
-            self.assertEqual(reads[:7], [("/tmp/left", i, 56) for i in range(1, 8)])
-            self.assertEqual(reads[7:], [("/tmp/right", i, 56) for i in range(8, 15)])
-            response[0] = 9
-            with self.assertRaises(OSError):
+            self.assertEqual([(g.path, g.address, g.size, g.ids) for g in groups],
+                             [("/tmp/left", 56, 2, list(range(1, 8))),
+                              ("/tmp/right", 56, 2, list(range(8, 15)))])
+            missing[0] = 9
+            with self.assertRaisesRegex(OSError, "encoder 9 on /tmp/right"):
                 sensor.read()
             sensor.close()
             self.assertTrue(all(not port.is_open for port in ports))
+            with self.assertRaisesRegex(OSError, "buses are closed"):
+                sensor.read()
 
-    def test_held_and_repeated_a(self):
-        edges = ButtonEdges()
-        expected = [(0, {"A"}, set()), (0.1, set(), set()), (0.2, {"A"}, {"A"}),
-                    (0.25, {"A"}, set()), (0.3, set(), set()), (0.38, {"A"}, set()),
-                    (0.5, set(), set()), (0.6, {"A"}, {"A"})]
-        for at, pressed, result in expected:
-            self.assertEqual(edges.read(pressed, at), result)
+    def test_joycon_rejects_stale_reports_and_closes_all_handles(self):
+        from tempfile import TemporaryDirectory
+        from unittest.mock import Mock
+
+        reader = SimpleNamespace(_input_report=object(),
+                                 _update_input_report_thread=SimpleNamespace(is_alive=lambda: True),
+                                 _close=Mock())
+        gyro = SimpleNamespace(_close=Mock())
+        device = SimpleNamespace(button=reader, gyro=gyro, running=True, disconnnect=Mock())
+        factory = Mock(return_value=device)
+        with TemporaryDirectory() as ros_home, patch.dict(
+            sys.modules, {"joyconrobotics": SimpleNamespace(JoyconRobotics=factory)}
+        ), patch("exosuit_teleop.joycon_input.get_ros_home", return_value=ros_home), patch(
+            "exosuit_teleop.joycon_input.monotonic", side_effect=[0.0, 0.1, 0.7]
+        ):
+            with JoyCon("right") as joystick:
+                joystick.check()
+                with self.assertRaisesRegex(OSError, "stopped delivering"):
+                    joystick.check()
+
+        factory.assert_called_once_with("right", without_rest_init=True)
+        self.assertFalse(device.running)
+        for close in (device.disconnnect, reader._close, gyro._close):
+            close.assert_called_once()
 
 
 LIMITS = Limits((-20.0, -20.0), (20.0, 20.0), (30.0, 25.0), (80.0, 100.0))
@@ -122,7 +160,7 @@ class MovementTest(unittest.TestCase):
         planner = PathPlanner(LIMITS, 0.2, ARM_PERIOD, lambda pose: pose[1] < 9)
         self.assertIsNone(planner.plan("rejoin", (3.0, 2.0), PATH, Event()))
         self.assertIsNone(planner.plan("initial", PATH[0], PATH, Event()))
-        self.assertIsNone(planner.plan("live", PATH[2], (PATH[-1],), Event()))
+        self.assertFalse(planner.plan("live", PATH[2], (PATH[-1],), Event()))
         cancelled = Event()
         cancelled.set()
         self.assertIsNone(planner.plan("rejoin", PATH[2], PATH, cancelled))
@@ -178,8 +216,8 @@ class ControllerTest(unittest.TestCase):
         self.assertEqual(self.position, PATH[-1])
         self.assertEqual(self.step(sample={1: 4095, 2: 1}), PATH[-1])
         self.assertEqual(self.control.state, State.TELEOP)
-        self.step(sample={1: 0, 2: 1})
-        self.assertEqual(self.job.last_kind, "live")
+        self.assertAlmostEqual(self.step(sample={1: 0, 2: 1})[0], PATH[-1][0] + 360 / 4096)
+        self.assertEqual(self.job.last_kind, "initial")
         self.assertIsNone(self.step(a=True))
         self.assertEqual(self.control.state, State.HOLD)
         self.assertIsNone(self.step(a=True))
@@ -192,6 +230,26 @@ class ControllerTest(unittest.TestCase):
         self.until(State.CALIBRATING)
         self.assertEqual(self.step(sample={1: 100, 2: 200}), PATH[-1])
         self.assertEqual(self.control.state, State.TELEOP)
+
+    def test_live_tracks_latest_sample_without_a_queued_move(self):
+        self.step(a=True)
+        self.until(State.CALIBRATING)
+        self.step(sample={1: 100, 2: 100})
+        first = self.step(sample={1: 210, 2: 100})
+        self.assertAlmostEqual(first[0], PATH[-1][0] + LIMITS.velocity[0] * ARM_PERIOD)
+        reversed_target = self.step(sample={1: 100, 2: 100})
+        self.assertEqual(reversed_target, PATH[-1])
+
+    def test_pending_collision_step_is_discarded_when_target_reverses(self):
+        self.control.check_live = True
+        self.step(a=True)
+        self.until(State.CALIBRATING)
+        self.step(sample={1: 100, 2: 100})
+        self.assertEqual(self.step(sample={1: 110, 2: 100}), PATH[-1])
+        self.assertEqual(self.job.last_kind, "live")
+        self.assertEqual(self.step(sample={1: 90, 2: 100}), PATH[-1])
+        self.assertAlmostEqual(self.step(sample={1: 90, 2: 100})[0],
+                               PATH[-1][0] - 10 * 360 / 4096)
 
     def test_requires_zero_and_fresh_feedback_latches_fault(self):
         self.position = (0.0, 2.0)
@@ -232,6 +290,18 @@ class SafetyTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             Safety.load({}, ("a",))
 
+    def test_simulator_profile_can_run_without_moveit(self):
+        settings = {
+            "verified_watchdog": True, "feedback_type": "sensor_msgs/JointState",
+            "feedback_units": "radians", "feedback_age_s": 0.3, "tracking_deg": 2,
+            "arrival_deg": 0.1, "stopped_deg_s": 0.5, "stop_settle_s": 0.5,
+            "encoder_max_deg_s": 100, "encoder_age_s": 0.4,
+        }
+        self.assertEqual(Safety.load(settings, ("a",)).service, "")
+        settings["validity_service"] = "/check_state_validity"
+        with self.assertRaisesRegex(ValueError, "approved scene"):
+            Safety.load(settings, ("a",))
+
     def test_decode_freshness_and_source(self):
         mock = SimpleNamespace(name=["b", "a"], position=[math.pi, math.pi / 2], velocity=[0, 0.1],
                                header=SimpleNamespace(stamp=SimpleNamespace(to_sec=lambda: 5)),
@@ -252,9 +322,8 @@ class SafetyTest(unittest.TestCase):
         pubs.append((ARM_FEEDBACK, ["/bridge"]))
         subs = [(topic, ["/bridge"]) for topic in COMMAND_TYPES]
         types = list(COMMAND_TYPES.items()) + [(ARM_FEEDBACK, "sensor_msgs/JointState")]
-        ok = graph_health((pubs, subs, []), types, "/exo", "sensor_msgs/JointState")
-        self.assertEqual(ok[:4], (True, True, True, {"/bridge"}))
+        ok = arm_graph((pubs, subs, []), types, "/exo", "sensor_msgs/JointState")
+        self.assertEqual(ok, (True, {"/bridge"}))
         pubs[0] = (ARM, ["/exo", "/old"])
-        wrong = graph_health((pubs, subs, []), types, "/exo", "dynamic_biped/robotQVTau")
-        self.assertFalse(wrong[0])
-        self.assertEqual(wrong[3], set())
+        wrong = arm_graph((pubs, subs, []), types, "/exo", "dynamic_biped/robotQVTau")
+        self.assertEqual(wrong, (False, set()))

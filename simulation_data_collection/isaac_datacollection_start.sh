@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start ROS1 and the ExoSuit controller in one four-pane tmux session.
+# Run the local master and three independent ROS nodes in tmux.
 
 set -eo pipefail
 
@@ -18,84 +18,90 @@ master_responds() {
 
 run_core() {
     if master_responds; then
-        printf 'Using existing ROS Master at %s.\n' "$ROS_MASTER_URI"
-    else
-        local port="${ROS_MASTER_URI##*:}"
-        roscore -p "${port%/}"
+        error "Refusing to reuse a ROS master at $ROS_MASTER_URI."
+        return 1
     fi
-}
-
-run_arms() {
-    local deadline=$((SECONDS + startup_timeout))
+    roscore -p "${ROS_MASTER_URI##*:}" &
+    local core_pid=$! deadline=$((SECONDS + startup_timeout))
+    trap 'kill -TERM "$core_pid" 2>/dev/null || true; wait "$core_pid" 2>/dev/null || true; return 130' INT TERM
     until master_responds; do
-        if [[ -e "$log_dir/core-exit" ]] || (( SECONDS >= deadline )); then
-            error "ROS Master did not become ready at $ROS_MASTER_URI. Controller was not launched."
+        if ! kill -0 "$core_pid" 2>/dev/null || (( SECONDS >= deadline )); then
+            kill -TERM "$core_pid" 2>/dev/null || true
+            wait "$core_pid" || true
+            error "Dedicated ROS master did not start at $ROS_MASTER_URI."
             return 1
         fi
         sleep 0.25
     done
+    if ! kill -0 "$core_pid" 2>/dev/null; then
+        error "Dedicated ROS master exited before it became ready."
+        return 1
+    fi
+    touch "$log_dir/core-ready"
+    wait "$core_pid"
+}
+
+run_node() {
+    local deadline=$((SECONDS + startup_timeout))
+    until [[ -e "$log_dir/core-ready" ]] && master_responds; do
+        if [[ -e "$log_dir/core-exit" ]] || (( SECONDS >= deadline )); then
+            error "Dedicated ROS master did not become ready at $ROS_MASTER_URI."
+            return 1
+        fi
+        sleep 0.25
+    done
+    local arms=false grippers=false recording=false
+    case "$role" in
+        arms) arms=true ;;
+        grippers) grippers=true ;;
+        recording) recording=true ;;
+    esac
+    # The reference gives the arm process a head start on the shared HID device.
+    if [[ "$role" != arms ]]; then
+        sleep 2
+    fi
     export ROSCONSOLE_FORMAT='${message}'
-    touch "$log_dir/arms-start" || return
-    roslaunch exosuit_teleop teleop.launch "$@"
+    roslaunch --wait exosuit_teleop teleop.launch \
+        "sim_master_uri:=$ROS_MASTER_URI" simulation_only:=true \
+        "start_arms:=$arms" "start_grippers:=$grippers" "start_recording:=$recording" "$@"
 }
 
 pane_command() {
-    case "$role" in
-        core) run_core ;;
-        arms) run_arms "$@" ;;
-        grippers|recording)
-            local component=GRIP deadline=$((SECONDS + startup_timeout))
-            until [[ -e "$log_dir/arms-start" || -e "$log_dir/arms-exit" ]] ||
-                  (( SECONDS >= deadline )); do
-                sleep 0.25
-            done
-            [[ "$role" != recording ]] || component=RECORD
-            rosrun exosuit_teleop teleop_log_view.py --component "$component" \
-                --launcher-exit-file "$log_dir/arms-exit"
-            ;;
-    esac
-}
-
-pane_output() {
-    # Keep draining the foreground command's output while it handles Ctrl+C.
-    trap '' INT
-    if [[ "$role" == arms ]]; then
-        sed -u -E '/^\[[0-9]{2}:[0-9]{2}:[0-9]{2}\] \[(GRIP|RECORD)\] /d'
+    if [[ "$role" == core ]]; then
+        run_core
     else
-        cat
+        run_node "$@"
     fi
 }
 
 if [[ "${1:-}" == --pane ]]; then
     role=$2 log_dir=$3 startup_timeout=$4
     shift 4
-    trap 'exit 130' INT
-    if [[ "$role" == core || "$role" == arms ]]; then
-        trap 'printf "%s\n" "$?" > "$log_dir/$role-exit"' EXIT
-    fi
+    trap 'printf "%s\n" "$?" > "$log_dir/$role-exit"' EXIT
     export PYTHONUNBUFFERED=1
-    pane_command "$@" 2>&1 | tee -ia "$log_dir/$role.log" | pane_output
+    pane_command "$@" 2>&1 | tee -ia "$log_dir/$role.log"
     exit $?
 fi
 
 detach=false
+simulation_only=false
 launch_args=()
 for arg in "$@"; do
     case "$arg" in
         --detach) detach=true ;;
         --help)
             cat <<'USAGE'
-Usage: ./isaac_datacollection_start.sh [--detach] [name:=value ...]
-Launch arguments: safety_file, trajectories_file, left_serial, right_serial,
-                  left_joycon, right_joycon.
-Defaults: ROS Master http://192.168.1.112:11311, ROS_IP 192.168.1.112,
+Usage: ./isaac_datacollection_start.sh simulation_only:=true [--detach] [name:=value ...]
+Launch arguments: safety_file, trajectories_file, model_urdf, left_serial, right_serial.
+Defaults: ROS Master http://127.0.0.1:11321, ROS_IP 127.0.0.1,
           simulation_data_collection/devel/setup.bash, 30 s startup timeout.
 Overrides: ISAAC_ROS_MASTER_URI, ISAAC_ROS_IP, ISAAC_CATKIN_SETUP,
            ISAAC_ROS_START_TIMEOUT, ISAAC_LOG_ROOT (default ~/.ros/exosuit-isaac).
 USAGE
             exit 0
             ;;
-        safety_file:=*|trajectories_file:=*|left_serial:=*|right_serial:=*|left_joycon:=*|right_joycon:=*)
+        simulation_only:=true) simulation_only=true ;;
+        safety_file:=*|trajectories_file:=*|model_urdf:=*|left_serial:=*|right_serial:=*)
             launch_args+=("$arg") ;;
         *) error "Unknown argument '$arg'. Use --help." ;;
     esac
@@ -108,13 +114,21 @@ else
     setup="${ISAAC_CATKIN_SETUP:-$WORKSPACE/devel/setup.bash}"
     [[ "$setup" == /* ]] || setup="$PWD/$setup"
     [[ -r "$setup" ]] || error "Catkin setup is unreadable at $setup. Build the workspace or set ISAAC_CATKIN_SETUP."
-    master_uri="${ISAAC_ROS_MASTER_URI:-http://192.168.1.112:11311}"
-    ros_ip="${ISAAC_ROS_IP:-192.168.1.112}"
+    "$simulation_only" || error "Confirm the isolated simulation network with simulation_only:=true."
+    master_uri="${ISAAC_ROS_MASTER_URI:-http://127.0.0.1:11321}"
+    ros_ip="${ISAAC_ROS_IP:-127.0.0.1}"
     startup_timeout="${ISAAC_ROS_START_TIMEOUT:-30}"
-    if [[ ! "$master_uri" =~ ^http://[^/]+:([0-9]{1,5})/?$ ]] ||
-       (( 10#${BASH_REMATCH[1]} < 1 || 10#${BASH_REMATCH[1]} > 65535 )); then
-        error "Expected ISAAC_ROS_MASTER_URI=http://HOST:PORT."
+    if [[ ! "$master_uri" =~ ^http://([0-9.]+):([1-9][0-9]{0,4})$ ||
+          "${BASH_REMATCH[1]}" != "$ros_ip" ]] ||
+       (( BASH_REMATCH[2] > 65535 || BASH_REMATCH[2] == 11311 )); then
+        error "Use http://ROS_IP:PORT with a local IPv4 address and a dedicated simulation port."
     fi
+    python3 -c 'import ipaddress, socket, sys
+host = ipaddress.IPv4Address(sys.argv[1])
+if host.is_unspecified or host.is_multicast:
+    sys.exit(1)
+with socket.socket() as probe:
+    probe.bind((str(host), 0))' "$ros_ip" || error "ISAAC_ROS_IP must be a local IPv4 unicast address."
     if [[ ! "$startup_timeout" =~ ^[1-9][0-9]{0,3}$ ]]; then
         error "ISAAC_ROS_START_TIMEOUT must be a positive integer (seconds, up to 9999)."
     fi

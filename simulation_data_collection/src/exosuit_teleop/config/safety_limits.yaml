@@ -5,9 +5,8 @@ safety:
   # Verified controller stop on loss of this stream, and stop settling time in seconds.
   verified_watchdog: false
   stop_settle_s: ""
-  # The live bridge/controller must preserve the wire contract and honor recording OFF.
-  verified_bridge: false
-  # MoveIt move_group GetStateValidity, backed by the approved full static planning scene.
+  # Optional MoveIt GetStateValidity with a reviewed full static planning scene.
+  # An empty service means there is no collision checking.
   validity_service: ""
   collision_sample_deg: ""
   plan_timeout_s: ""

@@ -1,4 +1,4 @@
-# Preserve wire order and signs from servo_angle_publisher.py in e57c627.
+# Preserve wire order and signs from servo_angle_publisher.py.
 # Physical LEFT serial bus supplies the first seven (robot RIGHT) entries.
 # Columns: ROS joint name, physical encoder ID, sign.
 joints:

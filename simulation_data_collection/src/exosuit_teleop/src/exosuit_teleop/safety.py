@@ -33,18 +33,21 @@ class Safety:
 
     @classmethod
     def load(cls, config, names):
-        scene = config.get("approved_scene")
-        if not isinstance(scene, str) or not scene.strip() or config.get("verified_watchdog") is not True:
-            raise ValueError("An approved scene and a verified controller stop/hold are required")
-        if config.get("verified_bridge") is not True:
-            raise ValueError("The bridge and recording command contract require verification")
-        service = config.get("validity_service")
-        if not isinstance(service, str) or not service.startswith("/") or service == "/":
-            raise ValueError("Configure an absolute MoveIt state validity service name")
-        fields = ("collision_sample_deg", "plan_timeout_s", "feedback_age_s",
-                  "tracking_deg", "arrival_deg", "stopped_deg_s", "stop_settle_s",
-                  "encoder_max_deg_s", "encoder_age_s")
-        spacing, timeout, age, tracking, arrival, stopped, settle, speed, encoder_age = (
+        if config.get("verified_watchdog") is not True:
+            raise ValueError("A verified simulation controller stop/hold is required")
+        service = config.get("validity_service", "")
+        if not isinstance(service, str) or (service and (not service.startswith("/") or service == "/")):
+            raise ValueError("Expected an absolute MoveIt service name or an empty string")
+        spacing = timeout = 0.0
+        if service:
+            scene = config.get("approved_scene")
+            if not isinstance(scene, str) or not scene.strip():
+                raise ValueError("Configure the approved scene for the MoveIt service")
+            spacing = positive(config.get("collision_sample_deg"), "collision_sample_deg")
+            timeout = positive(config.get("plan_timeout_s"), "plan_timeout_s")
+        fields = ("feedback_age_s", "tracking_deg", "arrival_deg", "stopped_deg_s",
+                  "stop_settle_s", "encoder_max_deg_s", "encoder_age_s")
+        age, tracking, arrival, stopped, settle, speed, encoder_age = (
             positive(config.get(field), field) for field in fields
         )
         if arrival > tracking or speed * encoder_age + 360.0 / 4096 >= 180:
@@ -88,9 +91,10 @@ def decode_feedback(message, order, units, wire_names, received):
 
     def ordered(values):
         result = tuple(values[indices[name]] for name in wire_names)
+        result = tuple(map(degrees, result)) if units == "radians" else result
         if not all(isfinite(value) for value in result):
             raise ValueError("Non-finite joint feedback")
-        return tuple(map(degrees, result)) if units == "radians" else result
+        return result
 
     stamp = None if order else message.header.stamp.to_sec()
     source = (message._connection_header or {}).get("callerid")

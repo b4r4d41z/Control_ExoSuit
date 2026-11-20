@@ -20,9 +20,11 @@ ARM_PERIOD = 0.1
 
 
 class Teleoperation:
-    def __init__(self, path, safety, limits, encoders, planner):
+    def __init__(self, path, safety, limits, encoders, planner, check_live=False):
         self.path, self.safety, self.limits = path, safety, limits
         self.encoders, self.planner = encoders, planner
+        self.check_live = check_live
+        self.live_pending = None
         self.state = State.IDLE
         self.reason = ""
         self.pending = None
@@ -37,6 +39,10 @@ class Teleoperation:
             self.pending[2].set()
             self.planner.discard()
         self.pending = None
+        if self.live_pending:
+            self.live_pending[1].set()
+            self.planner.discard()
+        self.live_pending = None
         self.segments = []
         self.command = None
         self.state, self.reason, self.hold_since = state, reason, now
@@ -52,26 +58,27 @@ class Teleoperation:
         self.pending = kind, start, cancelled, now
         return True
 
-    def step(self, now, feedback, a=False, encoder_sample=None):
+    def step(self, now, feedback, a=False, encoder_sample=None, feedback_error=""):
         if self.state == State.FAULT:
             return None
         try:
-            return self._step(now, feedback, a, encoder_sample)
+            return self._step(now, feedback, a, encoder_sample, feedback_error)
         except (KeyError, ValueError, RuntimeError, OSError) as error:
             self.fault(now, str(error))
             return None
 
-    def _step(self, now, fb, a, encoder_sample):
+    def _step(self, now, fb, a, encoder_sample, feedback_error):
         state = self.state
         if a and state in (State.INITIALIZING, State.TELEOP, State.RETURNING, State.CALIBRATING):
             self.stop(State.HOLD, now, "Arm stream paused")
             return None
 
         if fb is None:
+            reason = feedback_error or "Fresh arm feedback and a healthy ROS graph are required"
             if state not in (State.IDLE, State.HOLD):
-                raise RuntimeError("Arm feedback or ROS graph is unavailable")
+                raise RuntimeError(reason)
             if a:
-                self.reason = "Fresh feedback and a healthy ROS graph are required"
+                self.reason = reason
             return None
         if state == State.IDLE or state == State.HOLD:
             if not a:
@@ -108,6 +115,7 @@ class Teleoperation:
                 ticks, stamp = encoder_sample
                 self.target = self.encoders.calibrate(ticks, stamp, self.path[-1])
                 self.encoder_stamp = stamp
+                self.command = self.target
                 self.state = State.TELEOP
             elif now - self.calibration_since > self.safety.encoder_age:
                 raise RuntimeError("No fresh encoder sample after reaching READY")
@@ -125,12 +133,9 @@ class Teleoperation:
 
         if self.pending:
             kind, start, _, requested = self.pending
-            if now - requested > self.safety.plan_timeout:
+            if self.safety.plan_timeout and now - requested > self.safety.plan_timeout:
                 raise RuntimeError("Collision validation timed out")
-            if kind != "live" and (
-                not near(fb.position, start, self.safety.arrival)
-                or not fb.stopped(self.safety.stopped)
-            ):
+            if not near(fb.position, start, self.safety.arrival) or not fb.stopped(self.safety.stopped):
                 raise RuntimeError("Robot moved during automatic planning")
             done, result = self.planner.poll()
             if done:
@@ -176,6 +181,39 @@ class Teleoperation:
             self.command = desired
             return desired
 
-        if self.state == State.TELEOP and self.pending is None and self.target != self.command:
-            self._request("live", self.command, (self.target,), now)
+        if self.state == State.TELEOP:
+            self.command = self._live_command(now, fb)
         return self.command
+
+    def _live_command(self, now, feedback):
+        if self.live_pending:
+            desired, _, requested = self.live_pending
+            if now - requested > self.safety.plan_timeout:
+                raise RuntimeError("Live collision validation timed out")
+            done, valid = self.planner.poll()
+            if not done:
+                return self.command
+            self.live_pending = None
+            if not valid:
+                raise RuntimeError("Live joint step failed collision validation")
+            # Drop a superseded step while allowing small encoder jitter.
+            tolerance = self.safety.arrival
+            if all(min(q, target) - tolerance <= new <= max(q, target) + tolerance
+                   for q, target, new in zip(self.command, self.target, desired)):
+                return self._check_tracking(feedback, desired)
+
+        desired = tuple(q + max(-v * ARM_PERIOD, min(v * ARM_PERIOD, target - q))
+                        for q, target, v in zip(self.command, self.target, self.limits.velocity))
+        desired = self._check_tracking(feedback, desired)
+        if not self.check_live or desired == self.command:
+            return desired
+        cancelled = Event()
+        if self.planner.start("live", self.command, (desired,), cancelled):
+            self.live_pending = desired, cancelled, now
+        return self.command
+
+    def _check_tracking(self, feedback, desired):
+        self.limits.check(desired)
+        if not near(feedback.position, desired, self.safety.tracking):
+            raise RuntimeError("Next arm command exceeds tracking tolerance")
+        return desired

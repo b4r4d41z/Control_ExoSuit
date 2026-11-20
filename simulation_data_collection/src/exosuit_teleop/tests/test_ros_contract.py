@@ -2,7 +2,9 @@
 
 from io import BytesIO
 from pathlib import Path
+import os
 import unittest
+from unittest.mock import patch
 from xml.etree import ElementTree
 
 import yaml
@@ -10,6 +12,7 @@ from dynamic_biped.msg import robotHandPosition, robotQVTau
 from sensor_msgs.msg import JointState
 from std_msgs.msg import Bool
 
+from exosuit_teleop.ros_adapter import require_simulation_master
 from exosuit_teleop.safety import ARM, COMMAND_TYPES, GRIP, RECORD, decode_feedback, fresh
 from exosuit_teleop.trajectory import Limits, named_path
 
@@ -60,5 +63,25 @@ class ROSContractTest(unittest.TestCase):
         for pose in path:
             limits.check(pose)
         launch = ElementTree.parse(PACKAGE / "launch/teleop.launch")
-        self.assertEqual(len(launch.findall("node")), 1)
-        self.assertEqual(launch.find("node").get("pkg"), "exosuit_teleop")
+        self.assertEqual({node.get("type") for node in launch.findall("node")},
+                         {"exosuit_teleop_node.py", "grip_state_publisher.py",
+                          "isaac_record_trigger.py"})
+
+    def test_master_guard_requires_local_dedicated_simulation_graph(self):
+        def check(master, expected, opt_in):
+            settings = {"~sim_master_uri": expected, "~simulation_only": opt_in}
+            with patch("rosgraph.get_master_uri", return_value=master), patch(
+                "rospy.get_param", side_effect=settings.__getitem__
+            ), patch.dict(os.environ, {"ROS_IP": "127.0.0.1", "ROS_HOSTNAME": ""}):
+                require_simulation_master()
+
+        dedicated = "http://127.0.0.1:11321"
+        check(dedicated, dedicated, True)
+        for master, expected, opt_in in (
+            ("http://127.0.0.1:11311", "http://127.0.0.1:11311", True),
+            ("http://127.0.0.1:11311", dedicated, True),
+            (dedicated, dedicated, False),
+        ):
+            with self.subTest(master=master, expected=expected, opt_in=opt_in):
+                with self.assertRaises(ValueError):
+                    check(master, expected, opt_in)

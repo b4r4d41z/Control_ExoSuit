@@ -4,17 +4,30 @@
   <arg name="model_urdf" default="$(find biped_s40)/urdf/biped_s40.urdf"/>
   <arg name="left_serial" default="/dev/ttyACM0"/>
   <arg name="right_serial" default="/dev/ttyACM1"/>
-  <arg name="left_joycon" default=""/>
-  <arg name="right_joycon" default=""/>
+  <arg name="simulation_only" default="false"/>
+  <arg name="sim_master_uri" default="http://127.0.0.1:11321"/>
+  <arg name="start_arms" default="true"/>
+  <arg name="start_grippers" default="true"/>
+  <arg name="start_recording" default="true"/>
   <node pkg="exosuit_teleop" type="exosuit_teleop_node.py" name="exosuit_teleop"
-        output="screen" required="true" respawn="false" clear_params="true">
+        if="$(arg start_arms)" output="screen" required="true" clear_params="true">
     <rosparam command="load" file="$(find exosuit_teleop)/config/joint_mapping.yaml"/>
     <rosparam command="load" file="$(arg trajectories_file)"/>
     <rosparam command="load" file="$(arg safety_file)"/>
     <param name="model_urdf" value="$(arg model_urdf)"/>
     <param name="left_serial" value="$(arg left_serial)"/>
     <param name="right_serial" value="$(arg right_serial)"/>
-    <param name="left_joycon" value="$(arg left_joycon)"/>
-    <param name="right_joycon" value="$(arg right_joycon)"/>
+    <param name="simulation_only" type="bool" value="$(arg simulation_only)"/>
+    <param name="sim_master_uri" value="$(arg sim_master_uri)"/>
+  </node>
+  <node pkg="exosuit_teleop" type="grip_state_publisher.py" name="grip_state_publisher"
+        if="$(arg start_grippers)" output="screen" required="true" clear_params="true">
+    <param name="simulation_only" type="bool" value="$(arg simulation_only)"/>
+    <param name="sim_master_uri" value="$(arg sim_master_uri)"/>
+  </node>
+  <node pkg="exosuit_teleop" type="isaac_record_trigger.py" name="isaac_record_trigger"
+        if="$(arg start_recording)" output="screen" required="true" clear_params="true">
+    <param name="simulation_only" type="bool" value="$(arg simulation_only)"/>
+    <param name="sim_master_uri" value="$(arg sim_master_uri)"/>
   </node>
 </launch>
