@@ -1,4 +1,4 @@
-"""Feetech position acquisition and relative encoder calibration."""
+"""Feetech position acquisition and the reference encoder conversion."""
 
 from pathlib import Path
 from threading import Lock
@@ -11,42 +11,32 @@ def tick_delta(current, previous):
     if any(type(tick) is not int or not 0 <= tick < TICKS_PER_REV
            for tick in (current, previous)):
         raise ValueError("Invalid Feetech position")
-    delta = (current - previous + TICKS_PER_REV // 2) % TICKS_PER_REV - TICKS_PER_REV // 2
-    if delta == -TICKS_PER_REV // 2:
-        raise ValueError("Ambiguous half-turn between Feetech readings")
+    delta = current - previous
+    if delta > TICKS_PER_REV / 2:
+        delta -= TICKS_PER_REV
+    elif delta < -TICKS_PER_REV / 2:
+        delta += TICKS_PER_REV
     return delta
 
 
-class RelativeEncoders:
-    def __init__(self, mapping, max_deg_s, max_age_s):
+class EncoderAngles:
+    """Accumulate signed degrees from the first sample for the entire session."""
+
+    def __init__(self, mapping):
         self.mapping = tuple((encoder, sign) for _, encoder, sign in mapping)
-        self.max_deg_s = max_deg_s
-        self.max_age_s = max_age_s
+        self.previous = None
+        self.positions = (0.0,) * len(self.mapping)
 
-    def calibrate(self, sample, stamp, ready):
-        for encoder, _ in self.mapping:
-            tick_delta(sample[encoder], sample[encoder])
-        self.previous, self.stamp = dict(sample), stamp
-        self.ready = tuple(ready)
-        self.offset = (0.0,) * len(self.mapping)
-        return self.ready
-
-    def target(self, sample, stamp):
-        elapsed = stamp - self.stamp
-        if not 0 < elapsed <= self.max_age_s:
-            raise ValueError("Invalid encoder sample interval")
-        bound = self.max_deg_s * elapsed + DEGREES_PER_TICK
-        if bound >= 180:
-            raise ValueError("Encoder interval permits ambiguous wraparound")
-        deltas = tuple(
-            sign * DEGREES_PER_TICK * tick_delta(sample[encoder], self.previous[encoder])
-            for encoder, sign in self.mapping
+    def update(self, sample):
+        current = tuple(sample[encoder] for encoder, _ in self.mapping)
+        previous = self.previous if self.previous is not None else current
+        self.positions = tuple(
+            angle + sign * DEGREES_PER_TICK * tick_delta(tick, last_tick)
+            for angle, (_, sign), tick, last_tick in
+            zip(self.positions, self.mapping, current, previous)
         )
-        if any(abs(delta) > bound for delta in deltas):
-            raise ValueError("Encoder velocity exceeds configured bound")
-        self.offset = tuple(offset + delta for offset, delta in zip(self.offset, deltas))
-        self.previous, self.stamp = dict(sample), stamp
-        return tuple(ready + offset for ready, offset in zip(self.ready, self.offset))
+        self.previous = current
+        return self.positions
 
 
 class FeetechReaders:

@@ -1,219 +1,70 @@
-"""ROS-independent arm lifecycle. An absent setpoint invokes the verified watchdog."""
+"""Open-loop arm state transitions and timed command publishing."""
 
+from collections import deque
 from enum import Enum, auto
-from threading import Event
+from time import monotonic
 
-from .trajectory import near
+from .trajectory import Segment
 
 
 class State(Enum):
     IDLE = auto()
     INITIALIZING = auto()
-    CALIBRATING = auto()
     TELEOP = auto()
-    HOLD = auto()
     RETURNING = auto()
-    FAULT = auto()
+    PAUSED_AT_READY = auto()
 
 
 ARM_PERIOD = 0.1
 
 
 class Teleoperation:
-    def __init__(self, path, safety, limits, encoders, planner, check_live=False):
-        self.path, self.safety, self.limits = path, safety, limits
-        self.encoders, self.planner = encoders, planner
-        self.check_live = check_live
-        self.live_pending = None
+    def __init__(self, path, duration, read_position, publish, clock=monotonic):
+        self.read_position = read_position
+        self.publish = publish
+        self.clock = clock
+        self.ready = path[-1]
+        self.duration = duration
+        self.initialization = tuple(
+            Segment(start, goal, duration) for start, goal in zip(path, path[1:])
+        )
         self.state = State.IDLE
-        self.reason = ""
-        self.pending = None
-        self.segments = []
-        self.command = None
-        self.next_command = 0.0
-        self.encoder_stamp = None
-        self.hold_since = None
+        self.last_command = None
+        self.segments = deque()
+        self.segment_started = None
 
-    def stop(self, state, now, reason):
-        if self.pending:
-            self.pending[2].set()
-            self.planner.discard()
-        self.pending = None
-        if self.live_pending:
-            self.live_pending[1].set()
-            self.planner.discard()
-        self.live_pending = None
-        self.segments = []
-        self.command = None
-        self.state, self.reason, self.hold_since = state, reason, now
-
-    def fault(self, now, reason):
-        self.stop(State.FAULT, now, reason)
-
-    def _request(self, kind, start, path, now):
-        cancelled = Event()
-        if not self.planner.start(kind, start, path, cancelled):
-            self.reason = "Previous collision check is still running"
-            return False
-        self.pending = kind, start, cancelled, now
-        return True
-
-    def step(self, now, feedback, a=False, encoder_sample=None, feedback_error=""):
-        if self.state == State.FAULT:
-            return None
-        try:
-            return self._step(now, feedback, a, encoder_sample, feedback_error)
-        except (KeyError, ValueError, RuntimeError, OSError) as error:
-            self.fault(now, str(error))
-            return None
-
-    def _step(self, now, fb, a, encoder_sample, feedback_error):
-        state = self.state
-        if a and state in (State.INITIALIZING, State.TELEOP, State.RETURNING, State.CALIBRATING):
-            self.stop(State.HOLD, now, "Arm stream paused")
-            return None
-
-        if fb is None:
-            reason = feedback_error or "Fresh arm feedback and a healthy ROS graph are required"
-            if state not in (State.IDLE, State.HOLD):
-                raise RuntimeError(reason)
-            if a:
-                self.reason = reason
-            return None
-        if state == State.IDLE or state == State.HOLD:
-            if not a:
-                return None
-            self.limits.check(fb.position)
-            if not fb.stopped(self.safety.stopped):
-                self.reason = "Robot must be stationary"
-                return None
-            if state == State.IDLE:
-                if not near(fb.position, self.path[0], self.safety.arrival):
-                    self.reason = "Robot is outside the ZERO tolerance"
-                    return None
-                if self._request("initial", fb.position, self.path, now):
-                    self.state, self.reason = State.INITIALIZING, ""
-            else:
-                if now - self.hold_since < self.safety.stop_settle:
-                    self.reason = "Controller stop is still settling"
-                    return None
-                if self._request("rejoin", fb.position, self.path, now):
-                    self.state, self.reason = State.RETURNING, ""
-            return None
-
-        self.limits.check(fb.position)
-        if any(abs(v) > limit for v, limit in zip(fb.velocity, self.limits.velocity)):
-            raise RuntimeError("Measured arm velocity exceeds configured limits")
-        if self.command is not None and not near(fb.position, self.command, self.safety.tracking):
-            raise RuntimeError("Arm following error exceeds configured tolerance")
-
-        if state == State.CALIBRATING:
-            if (not near(fb.position, self.path[-1], self.safety.arrival)
-                    or not fb.stopped(self.safety.stopped)):
-                raise RuntimeError("Robot moved away from READY during calibration")
-            if encoder_sample is not None and encoder_sample[1] > self.calibration_since:
-                ticks, stamp = encoder_sample
-                self.target = self.encoders.calibrate(ticks, stamp, self.path[-1])
-                self.encoder_stamp = stamp
-                self.command = self.target
+    def step(self, pressed=False):
+        if pressed:
+            if self.state == State.IDLE:
+                # Preserve the reference's first-start encoder origin.
+                self.read_position()
+                self.segments.extend(self.initialization)
+                self.state = State.INITIALIZING
+            elif self.state == State.TELEOP:
+                self.segments.append(Segment(self.last_command, self.ready, self.duration))
+                self.state = State.RETURNING
+            elif self.state == State.PAUSED_AT_READY:
                 self.state = State.TELEOP
-            elif now - self.calibration_since > self.safety.encoder_age:
-                raise RuntimeError("No fresh encoder sample after reaching READY")
-
-        if self.state == State.TELEOP:
-            if encoder_sample is not None and encoder_sample[1] > self.encoder_stamp:
-                ticks, stamp = encoder_sample
-                self.target = self.encoders.target(ticks, stamp)
-            else:
-                stamp = self.encoder_stamp
-            self.encoder_stamp = stamp
-            if not 0 <= now - stamp <= self.safety.encoder_age:
-                raise RuntimeError("Encoder sample expired")
-            self.limits.check(self.target)
-
-        if self.pending:
-            kind, start, _, requested = self.pending
-            if self.safety.plan_timeout and now - requested > self.safety.plan_timeout:
-                raise RuntimeError("Collision validation timed out")
-            if not near(fb.position, start, self.safety.arrival) or not fb.stopped(self.safety.stopped):
-                raise RuntimeError("Robot moved during automatic planning")
-            done, result = self.planner.poll()
-            if done:
-                self.pending = None
-                if not result:
-                    if kind == "rejoin":
-                        self.stop(State.HOLD, now, "No collision-checked route to READY")
-                        return None
-                    raise RuntimeError("No collision-checked arm path")
-                self.segments = list(result)
-                self.started = None
-                self.arrival_deadline = None
-
-        if now < self.next_command:
-            return None
-        self.next_command = now + ARM_PERIOD
 
         if self.segments:
-            segment = self.segments[0]
-            if self.started is None:
-                self.started = now
-            elapsed = now - self.started
-            desired = segment.at(elapsed)
-            if elapsed >= segment.duration:
-                if self.arrival_deadline is None:
-                    # Require feedback received after the first terminal setpoint.
-                    self.terminal_sent = now
-                    self.terminal_feedback_stamp = fb.stamp
-                    self.arrival_deadline = now + self.safety.stop_settle + self.safety.age
-                elif (fb.received > self.terminal_sent
-                      and (fb.stamp is None or fb.stamp > self.terminal_feedback_stamp)
-                      and near(fb.position, segment.goal, self.safety.arrival)
-                      and fb.stopped(self.safety.stopped)):
-                    del self.segments[0]
-                    self.started = self.arrival_deadline = None
-                    if not self.segments and self.state != State.TELEOP:
-                        self.state = State.CALIBRATING
-                        self.calibration_since = now
-                elif now > self.arrival_deadline:
-                    raise RuntimeError("Robot did not settle at the commanded waypoint")
-            if not near(fb.position, desired, self.safety.tracking):
-                raise RuntimeError("Next arm command exceeds tracking tolerance")
-            self.command = desired
-            return desired
+            self._advance(self.clock())
+        elif self.state == State.TELEOP:
+            self._send(self.read_position())
 
-        if self.state == State.TELEOP:
-            self.command = self._live_command(now, fb)
-        return self.command
+    def _send(self, position):
+        command = tuple(position)
+        self.publish(command)
+        self.last_command = command
 
-    def _live_command(self, now, feedback):
-        if self.live_pending:
-            desired, _, requested = self.live_pending
-            if now - requested > self.safety.plan_timeout:
-                raise RuntimeError("Live collision validation timed out")
-            done, valid = self.planner.poll()
-            if not done:
-                return self.command
-            self.live_pending = None
-            if not valid:
-                raise RuntimeError("Live joint step failed collision validation")
-            # Drop a superseded step while allowing small encoder jitter.
-            tolerance = self.safety.arrival
-            if all(min(q, target) - tolerance <= new <= max(q, target) + tolerance
-                   for q, target, new in zip(self.command, self.target, desired)):
-                return self._check_tracking(feedback, desired)
-
-        desired = tuple(q + max(-v * ARM_PERIOD, min(v * ARM_PERIOD, target - q))
-                        for q, target, v in zip(self.command, self.target, self.limits.velocity))
-        desired = self._check_tracking(feedback, desired)
-        if not self.check_live or desired == self.command:
-            return desired
-        cancelled = Event()
-        if self.planner.start("live", self.command, (desired,), cancelled):
-            self.live_pending = desired, cancelled, now
-        return self.command
-
-    def _check_tracking(self, feedback, desired):
-        self.limits.check(desired)
-        if not near(feedback.position, desired, self.safety.tracking):
-            raise RuntimeError("Next arm command exceeds tracking tolerance")
-        return desired
+    def _advance(self, now):
+        if self.segment_started is None:
+            self.segment_started = now
+        segment = self.segments[0]
+        elapsed = now - self.segment_started
+        self._send(segment.at(elapsed))
+        if elapsed >= segment.duration:
+            self.segments.popleft()
+            self.segment_started = now if self.segments else None
+            if not self.segments:
+                self.state = (State.TELEOP if self.state == State.INITIALIZING
+                              else State.PAUSED_AT_READY)

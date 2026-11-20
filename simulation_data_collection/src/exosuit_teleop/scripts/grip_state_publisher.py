@@ -5,7 +5,6 @@ import rospy
 from dynamic_biped.msg import robotHandPosition
 
 from exosuit_teleop.joycon_input import JoyCon
-from exosuit_teleop.ros_adapter import require_simulation_master
 
 open_left_hand = [0, 100, 0, 0, 0, 0]
 close_left_hand = [69, 99, 42, 54, 61, 60]
@@ -89,7 +88,6 @@ class GripStatePublisher:
 
 def main():
     rospy.init_node("grip_state_publisher")
-    require_simulation_master()
     with ExitStack() as resources:
         right = resources.enter_context(JoyCon("right"))
         left = resources.enter_context(JoyCon("left"))

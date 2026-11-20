@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the local master and three independent ROS nodes in tmux.
+# Run a ROS master pane and three independent ROS nodes in tmux.
 
 set -eo pipefail
 
@@ -18,23 +18,25 @@ master_responds() {
 
 run_core() {
     if master_responds; then
-        error "Refusing to reuse a ROS master at $ROS_MASTER_URI."
-        return 1
+        printf 'Using existing ROS master at %s.\n' "$ROS_MASTER_URI"
+        touch "$log_dir/core-ready"
+        return
     fi
-    roscore -p "${ROS_MASTER_URI##*:}" &
+    local uri="${ROS_MASTER_URI%/}"
+    roscore -p "${uri##*:}" &
     local core_pid=$! deadline=$((SECONDS + startup_timeout))
     trap 'kill -TERM "$core_pid" 2>/dev/null || true; wait "$core_pid" 2>/dev/null || true; return 130' INT TERM
     until master_responds; do
         if ! kill -0 "$core_pid" 2>/dev/null || (( SECONDS >= deadline )); then
             kill -TERM "$core_pid" 2>/dev/null || true
             wait "$core_pid" || true
-            error "Dedicated ROS master did not start at $ROS_MASTER_URI."
+            error "ROS master did not start at $ROS_MASTER_URI."
             return 1
         fi
         sleep 0.25
     done
     if ! kill -0 "$core_pid" 2>/dev/null; then
-        error "Dedicated ROS master exited before it became ready."
+        error "ROS master exited before it became ready."
         return 1
     fi
     touch "$log_dir/core-ready"
@@ -45,7 +47,7 @@ run_node() {
     local deadline=$((SECONDS + startup_timeout))
     until [[ -e "$log_dir/core-ready" ]] && master_responds; do
         if [[ -e "$log_dir/core-exit" ]] || (( SECONDS >= deadline )); then
-            error "Dedicated ROS master did not become ready at $ROS_MASTER_URI."
+            error "ROS master did not become ready at $ROS_MASTER_URI."
             return 1
         fi
         sleep 0.25
@@ -62,7 +64,6 @@ run_node() {
     fi
     export ROSCONSOLE_FORMAT='${message}'
     roslaunch --wait exosuit_teleop teleop.launch \
-        "sim_master_uri:=$ROS_MASTER_URI" simulation_only:=true \
         "start_arms:=$arms" "start_grippers:=$grippers" "start_recording:=$recording" "$@"
 }
 
@@ -84,24 +85,23 @@ if [[ "${1:-}" == --pane ]]; then
 fi
 
 detach=false
-simulation_only=false
 launch_args=()
 for arg in "$@"; do
     case "$arg" in
         --detach) detach=true ;;
         --help)
             cat <<'USAGE'
-Usage: ./isaac_datacollection_start.sh simulation_only:=true [--detach] [name:=value ...]
-Launch arguments: safety_file, trajectories_file, model_urdf, left_serial, right_serial.
-Defaults: ROS Master http://127.0.0.1:11321, ROS_IP 127.0.0.1,
+Usage: ./isaac_datacollection_start.sh [--detach] [name:=value ...]
+Launch arguments: trajectories_file, transition_duration_s, left_serial, right_serial.
+Defaults: ROS Master http://192.168.1.112:11311,
           simulation_data_collection/devel/setup.bash, 30 s startup timeout.
+ROS_MASTER_URI, ROS_HOSTNAME and ROS_IP are honored when set.
 Overrides: ISAAC_ROS_MASTER_URI, ISAAC_ROS_IP, ISAAC_CATKIN_SETUP,
            ISAAC_ROS_START_TIMEOUT, ISAAC_LOG_ROOT (default ~/.ros/exosuit-isaac).
 USAGE
             exit 0
             ;;
-        simulation_only:=true) simulation_only=true ;;
-        safety_file:=*|trajectories_file:=*|model_urdf:=*|left_serial:=*|right_serial:=*)
+        trajectories_file:=*|transition_duration_s:=*|left_serial:=*|right_serial:=*)
             launch_args+=("$arg") ;;
         *) error "Unknown argument '$arg'. Use --help." ;;
     esac
@@ -114,21 +114,13 @@ else
     setup="${ISAAC_CATKIN_SETUP:-$WORKSPACE/devel/setup.bash}"
     [[ "$setup" == /* ]] || setup="$PWD/$setup"
     [[ -r "$setup" ]] || error "Catkin setup is unreadable at $setup. Build the workspace or set ISAAC_CATKIN_SETUP."
-    "$simulation_only" || error "Confirm the isolated simulation network with simulation_only:=true."
-    master_uri="${ISAAC_ROS_MASTER_URI:-http://127.0.0.1:11321}"
-    ros_ip="${ISAAC_ROS_IP:-127.0.0.1}"
+    master_uri="http://192.168.1.112:11311"
     startup_timeout="${ISAAC_ROS_START_TIMEOUT:-30}"
-    if [[ ! "$master_uri" =~ ^http://([0-9.]+):([1-9][0-9]{0,4})$ ||
-          "${BASH_REMATCH[1]}" != "$ros_ip" ]] ||
-       (( BASH_REMATCH[2] > 65535 || BASH_REMATCH[2] == 11311 )); then
-        error "Use http://ROS_IP:PORT with a local IPv4 address and a dedicated simulation port."
+    if [[ ! "$master_uri" =~ ^http://[^/]+:([1-9][0-9]{0,4})/?$ ]] ||
+       (( BASH_REMATCH[1] > 65535 )); then
+        error "Use an HTTP ROS master URI with an explicit port."
     fi
-    python3 -c 'import ipaddress, socket, sys
-host = ipaddress.IPv4Address(sys.argv[1])
-if host.is_unspecified or host.is_multicast:
-    sys.exit(1)
-with socket.socket() as probe:
-    probe.bind((str(host), 0))' "$ros_ip" || error "ISAAC_ROS_IP must be a local IPv4 unicast address."
+    ros_address=("ROS_IP=192.168.1.112")
     if [[ ! "$startup_timeout" =~ ^[1-9][0-9]{0,3}$ ]]; then
         error "ISAAC_ROS_START_TIMEOUT must be a positive integer (seconds, up to 9999)."
     fi
@@ -158,10 +150,14 @@ with socket.socket() as probe:
             local pane=$1 role=$2 command prefix
             shift 2
             # Source the overlay in the interactive Bash so it remains usable at the prompt.
-            printf -v prefix 'cd -- %q && source %q && export ROS_MASTER_URI=%q ROS_IP=%q ROS_LOG_DIR=%q && unset ROS_HOSTNAME &&' \
-                "$WORKSPACE" "$setup" "$master_uri" "$ros_ip" "$log_dir/ros"
+            printf -v prefix 'cd -- %q && source %q && unset ROS_HOSTNAME ROS_IP && export ROS_MASTER_URI=%q ROS_LOG_DIR=%q' \
+                "$WORKSPACE" "$setup" "$master_uri" "$log_dir/ros"
             printf -v command ' %q' bash "$SCRIPT" --pane "$role" "$log_dir" "$startup_timeout" "$@"
-            tmux send-keys -t "$window.$pane" -l "$prefix$command"
+            local address=""
+            if (( ${#ros_address[@]} )); then
+                printf -v address ' %q' "${ros_address[0]}"
+            fi
+            tmux send-keys -t "$window.$pane" -l "$prefix$address && export ROS_IP &&$command"
             tmux send-keys -t "$window.$pane" C-m
         }
 

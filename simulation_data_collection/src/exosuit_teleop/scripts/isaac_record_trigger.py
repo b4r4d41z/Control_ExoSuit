@@ -7,12 +7,10 @@ import rospy
 from std_msgs.msg import Bool
 
 from exosuit_teleop.joycon_input import JoyCon
-from exosuit_teleop.ros_adapter import require_simulation_master
 
 
 def main():
     rospy.init_node("isaac_record_trigger")
-    require_simulation_master()
     publisher = rospy.Publisher(
         "/data_collection/recording", Bool, queue_size=1, latch=True
     )

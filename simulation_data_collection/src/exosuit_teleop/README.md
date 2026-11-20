@@ -65,96 +65,43 @@ PYTHON
 ls -l /dev/hidraw* /dev/serial/by-id/
 ```
 
-## Isolate the simulator before startup
+## Start
 
-Keep the ExoSuit processes, ROS1 master, and Isaac bridge on a simulation-only
-network with no route to a physical robot. Use an isolated container network
-for co-located processes or a private network restricted to the simulator
-and Radxa for separate hosts. Outside loopback, Noetic binds ROS listeners
-on all interfaces. Restrict those listeners to the simulation network using
-a network namespace or firewall. Keep the bridge's ROS2 domain and network
-separate from the physical robot, and check its forwarding rules and command
-subscribers before using the controls. ROS1 does not authenticate node
-identities. A separate port and the `simulation_only` argument are guardrails,
-while network and bridge isolation prevent delivery to physical controllers.
+Point ROS networking at the simulation graph. Keep physical robot controllers
+off that graph because the command topics use their existing names. The
+launcher defaults to the loopback master `http://127.0.0.1:11321`, reuses a
+reachable ROS master at the configured URI, and starts a local master when
+needed. Isaac Sim can be started separately.
 
-The tmux launcher starts a fresh master and uses separate panes for the master,
-arms, grippers, and recording. It refuses to reuse a master on the selected
-port. For a single host or shared network namespace, the master defaults to
-`http://127.0.0.1:11321`. When the simulator is on a separate host, set
-`ISAAC_ROS_MASTER_URI=http://<radxa-simulation-ip>:11321` and
-`ISAAC_ROS_IP=<radxa-simulation-ip>` on the Radxa, then point the simulator's
-ROS1 bridge to that URI. The publishers check that ROS selected the specified
-master on a local IPv4 address and a dedicated port. Set unique simulator
-addresses and keep the physical ROS graph off that network.
+```bash
+cd "$repo/simulation_data_collection"
+export ISAAC_CATKIN_SETUP="$HOME/exosuit-sim-ws/devel/setup.bash"
+./isaac_datacollection_start.sh
+```
 
-## Wire contract and arm setup
+The Catkin setup path defaults to `simulation_data_collection/devel/setup.bash`.
+The launcher honors `ROS_MASTER_URI`, `ROS_HOSTNAME`, and `ROS_IP`.
+`ISAAC_ROS_MASTER_URI` and `ISAAC_ROS_IP` take precedence when set.
+The four panes show the master, arms, grippers, and recording. Stop each node
+with Ctrl+C in its pane. Keep the recording subscriber connected through
+recording shutdown so it can receive OFF.
+
+The optional `transition_duration_s:=SECONDS` argument changes the duration
+of each initialization leg and the return. The default is 3 seconds per leg.
+Use `left_serial:=...`, `right_serial:=...` or `trajectories_file:=...` to
+override their respective defaults.
+
+## Wire contract
 
 | ROS1 topic | Message | Contract |
 | --- | --- | --- |
 | `/kuavo_arm_traj` | `sensor_msgs/JointState` | Command positions in degrees at about 10 Hz. Robot right joints come first, driven by physical left encoders, then robot left joints. |
-| `/control_robot_hand_position` | `dynamic_biped/robotHandPosition` | Six values per hand at 50 Hz when enabled; republishes the last message when disabled. |
-| `/data_collection/recording` | `std_msgs/Bool` | Latched request, OFF on startup and shutdown. The topic carries no acknowledgment. |
-| `/robot_arm_q_v_tau` | `dynamic_biped/robotQVTau` or `sensor_msgs/JointState` | Confirm the type, order, position and velocity units, and update rate before arming. |
-| `/robot_hand_position` | `dynamic_biped/robotHandPosition` | Reference feedback has a header and six values per hand. Grip control runs independently of it. |
+| `/control_robot_hand_position` | `dynamic_biped/robotHandPosition` | Six values per hand at 50 Hz when enabled. Republishes the last message when disabled. |
+| `/data_collection/recording` | `std_msgs/Bool` | Latched request, OFF on startup and shutdown. |
 
 The reference position mapping swaps the first two channels on each bus and
 inverts encoder IDs 1, 8, 9, and 13. Each bus is read using a Feetech
-`GroupSyncRead` of register 56. The pinned SDK checks transport and response
-data, but its group reader discards per-device status bytes. The controller
-rejects missing data, invalid ticks, and implausible wraparound intervals.
-
-Copy `config/safety_limits.yaml` to a file outside the checkout and fill it
-using the simulator's measured behavior. The shipped profile disables arm
-startup. Configure the joint limits, freshness thresholds, and feedback
-order and units. Verify that the simulator stops and holds on loss of the arm
-stream, which is how HOLD and FAULT request a stop. Preset and return motion
-use position, velocity, and acceleration bounds. Live tracking updates the
-latest relative target with position, following-error, and per-tick velocity
-bounds. Live acceleration shaping, braking, and setpoint interpolation are
-responsibilities of the verified simulator controller.
-
-Only use the unstamped `robotQVTau` option after verifying a single live
-publisher, bounded transport latency, and a bridge that stops publishing on
-upstream disconnect. Its position (`q`) and velocity (`v`) arrays must
-match the configured 14-joint order. Torque is unused. Stamped
-`JointState` requires unique names, matching arrays, and a fresh timestamp.
-From a terminal sourced and configured for the isolated simulation master:
-
-```bash
-rostopic type /robot_arm_q_v_tau
-rostopic info /robot_arm_q_v_tau
-rostopic echo -n 1 /robot_arm_q_v_tau
-rostopic hz /robot_arm_q_v_tau
-rostopic info /kuavo_arm_traj
-rostopic info /control_robot_hand_position
-rostopic info /data_collection/recording
-```
-
-MoveIt collision sampling is optional. Without a configured service there is
-no collision checking, and resume follows a straight joint-space return from
-the measured stop pose to READY. Validate clearances in the simulated model
-before running. To enable the checks, install `moveit_msgs`, configure a
-`GetStateValidity` service with the approved scene, and verify its collision
-matrix and rejection of a known collision. The node samples each planned
-segment and each proposed live step for the full robot. Sampling cannot
-guarantee swept clearance or account for controller interpolation. Review
-the scene, sampling spacing, controller behavior, and gripper geometry.
-
-```bash
-cd "$repo/simulation_data_collection"
-ISAAC_CATKIN_SETUP="$HOME/exosuit-sim-ws/devel/setup.bash" \
-  ./isaac_datacollection_start.sh simulation_only:=true \
-  safety_file:=/absolute/path/to/verified_safety.yaml \
-  left_serial:=/dev/ttyACM0 right_serial:=/dev/ttyACM1
-```
-
-For direct `roslaunch exosuit_teleop teleop.launch`, export `ROS_MASTER_URI`
-and `ROS_IP` for the dedicated master, unset `ROS_HOSTNAME`, and pass
-`simulation_only:=true`. Pass `sim_master_uri:=...` when using a nondefault
-URI. Start the master and use the same isolation as the tmux workflow.
-Stop the grip and recording panes with Ctrl+C, then stop arms and the master.
-Keep the recording subscriber connected until it receives OFF.
+`GroupSyncRead` of register 56.
 
 ### Model poses
 
@@ -179,11 +126,17 @@ and joint model. Select a deployment-specific file with
 
 ### Controls
 
-- **A** initializes from a stationary ZERO. Each waypoint needs fresh,
-  stationary feedback before advance. At READY a new encoder sample establishes
-  the relative baseline. **A** pauses the stream, then requests a return from
-  the measured stop pose. A fresh encoder baseline is taken again at READY.
-  A latched arm fault requires a restart after addressing its cause.
+- **A** starts the sequence from an assumed ZERO pose. Each quintic segment
+  completes on local elapsed time. The first A press establishes the
+  reference encoder origin before initialization. After publishing READY,
+  the arm process switches to the original accumulated encoder angles.
+- **A** during teleoperation immediately switches to a timed return from the
+  last published arm command. During return and while paused at READY, the
+  arm process stops sampling encoders. When the return finishes, press
+  **A** again to resume with the original encoder origin. Presses during
+  initialization or return are ignored. The joint command can jump on
+  entering teleoperation. Wraparound relies on the shortest signed encoder
+  delta, so movement beyond half a revolution between reads is ambiguous.
 - **Y** enables or disables grip changes. **ZL/ZR** toggle the respective grip
   through the reference JoyconRobotics `get_control()` state. Disabled mode
   republishes the last grip command if one exists.
@@ -192,11 +145,14 @@ and joint model. Select a deployment-specific file with
 
 ### Hardware-free checks
 
-From the sourced overlay, run the ROS adapter smoke tests against a fresh
-loopback `roscore` with no production devices or bridge. The test supplies
-fake button inputs, arm feedback, and encoder samples.
+From the sourced overlay, run the ROS smoke test against a fresh loopback
+`roscore` with no production devices or bridge. It supplies fake button and
+encoder input and checks initialization before attaching an arm subscriber.
 
 ```bash
 python3 -B "$repo/simulation_data_collection/src/exosuit_teleop/tests/ros_smoke.py"
-python3 -B "$repo/simulation_data_collection/src/exosuit_teleop/tests/ros_smoke.py" --legacy
 ```
+
+The arm process sends commands open loop. Waypoint completion describes the
+published sequence. Isaac Sim can receive commands while it is connected,
+and the controller does not measure physical arrival or collisions.

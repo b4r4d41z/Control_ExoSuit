@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(exosuit_teleop)
-find_package(catkin REQUIRED COMPONENTS dynamic_biped rosgraph rospy sensor_msgs std_msgs)
+find_package(catkin REQUIRED COMPONENTS dynamic_biped rospy sensor_msgs std_msgs)
 catkin_python_setup()
-catkin_package(CATKIN_DEPENDS dynamic_biped rosgraph rospy sensor_msgs std_msgs)
+catkin_package(CATKIN_DEPENDS dynamic_biped rospy sensor_msgs std_msgs)
 catkin_install_python(PROGRAMS
   scripts/exosuit_teleop_node.py
   scripts/grip_state_publisher.py
